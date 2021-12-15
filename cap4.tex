@@ -1,0 +1,108 @@
+\chapter{Results}
+
+This chapter is dedicated to the results obtained both in experiments and with the model. We start analyzing intensity as an indirect measurement of mean density accumulation, proving there is a transition on the accumulation near walls. Results of tracking explain further this observations.  
+
+\section{Intensity profiles}
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/experimental_profiles}
+	\caption[Experimental intensity profiles]{Experimental intensity profiles for a) $\lambda= $\SI{30}{\micro\meter} and b) $\lambda=$ \SI{24}{\micro\meter} with three different amplitudes. The colors were chosen so that curves associated with similar values of $A$ share color. The amplitudes that are shown allow to see the transition. Errorbars are the confidence interval of $95\%$ for the estimation of the mean $I(x)$. All other experimental intensity profiles are in appendix B. }
+	\label{experimental profiles}
+\end{figure}
+}
+
+We consider the normalized mean intensity profiles $I(x)$ defined by equation (\ref{eq:Intensity profile}). The average is taken over all the experiments with the same curved wall parameters $A$, $\lambda$. Intensity, is proportional to bacteria density, and so $I(x)$ is a measure of mean bacteria density in contact with the wall. In figure \ref{experimental profiles}, we show examples of experimental intensity profiles for $\lambda=$ \SI{30}{\micro\meter} and $\lambda= $ \SI{24}{\micro\meter} for three different amplitudes $A$. We can see how, for both wavelengths there is a transition on how the intensity behaves. For low values of $A$, the wall is just slightly curved, and bacteria can move through it easily. The curvature makes bacteria leave the wall, therefore, the intensity values are lower than the flat wall. Also, there is a minimum in $x=0$ corresponding to the valley of the curved wall. This minimum is produced because not all cells that touch the wall will go through the valley. If the contact starts near a peak, the the cell will leave the wall without going through the whole period. Then, we have a critical point, where $I(x)$ looks flat, which can be seen on $A=$ \SI{8.5}{\micro\meter} and $\lambda= $ \SI{30}{\micro\meter}. In this case, bacteria is still moving quickly around the wall, as the intensity is lower than the flat wall. Moreover, the intensity is lower compared to the previous case, because bacteria leave the wall with a higher angle. Finally, if the valley is too narrow, the intensity will increase greatly on the valley as bacteria get trapped on it. The more narrow the valley is, the higher the peak of intensity will be as bacteria get trapped more time.
+
+We call the transition  described as the accumulation transition. The accumulation transition is related to the curvature of the wall, depending on both $A$ and $\lambda$. For example, we can see that for \ref{experimental profiles} a) with $\lambda= $ \SI{30}{\micro\meter} the  critical point is in $A=$ \SI{8.5}{\micro\meter}, but for \ref{experimental profiles} b) $\lambda=$ \SI{24}{\micro\meter} we can not see the behavior described an so the critical point must be between $A=$ \SI{2.8}{\micro\meter} and \SI{5.5}{\micro\meter}. We now present a quantitative description of the accumulation transition.
+
+
+\subsection{Qualitative predictions}
+
+Qualitatively, the transition can be described as going from fewer bacteria in the valley of the wall to bacteria accumulating in there. This is represented by going from a minimum in $x=0$ to a maximum. To quantify that aspect, we used the fourier coefficent $c_1$ of the function $\cos{(2\pi x/\lambda)}$ calculated by:
+
+\begin{equation}
+    c_1 = \frac{2}{\lambda}\int_{-\lambda/2}^{\lambda/2} I(x)\cos\left(\frac{2\pi x}{\lambda} \right)dx = \frac{2}{\lambda} \sum_i I(x_i) \cos\left(\frac{2\pi x_i}{\lambda} \right)\Delta x,
+\end{equation}
+
+where $\Delta x$ is the spatial resolution of the profiles and $x_i$ the points in it. Negative values of $c_1$ indicate a minimun on $x=0$ and positive $c_1$ the opposite. The value of $c_1$ depends on the curvature of the wall. 
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/c1}
+	\caption[Coefficient $c_1$ for experiments and simulations]{Color plots of the $c_1$ coefficient in the $A$, $\lambda$ parameter space. The colors are such that $c_1=0$ corresponds to the grey color and extreme negative and positive values are blue and red respectively. Red and blue are not equally spaced since the values for positive $c_1$ are one order of magnitude higher. a) Experimental results for $c_1$, where the number in above each point represents the number $N$ of periods considered in the mean intensity profile $I(x)$. The $A\sim$ \SI{9}{\micro\meter} column has the lowest amount of experiments. Simulation results are in b), c) and d) with their respective parameters. For those three results, $k_{\text{cell}}=0$, meaning no cell interaction was considered. }
+	\label{c1 coefficient}
+\end{figure}
+}
+
+
+
+Figure \ref{c1 coefficient} shows color plots of experiments and simulations for $c_1$ in the $A$, $\lambda$ parameter space. The transition from negative to positive values is  seen in gray. In experiments, we can see how the accumulation transition occurs in $A= $ \SI{8.5}{\micro\meter}, $\lambda=$ \SI{30}{\micro\meter} and $A=$ \SI{5.6}{\micro\meter}, $\lambda= $ \SI{27}{\micro\meter}, but for the other wavelengths we lack the resolution in the amplitude to observe the critical point. We only know that is happens between $A\sim$ \SI{3}{\micro\meter} and \SI{5}{\micro\meter}, as discussed previously. In simulations, for now we consider $k_{\text{cell}}=0$ as in the low density regime, bacteria barely interact. We show three different sets of parameters and their results. In figure \ref{c1 coefficient} b) the set of parameters replicates the observed transition with precision. However, $c_1$ values are not exact, as expected. Even experiments performed in different days do not show the exact same profiles, as motility and density vary slightly. Even so, these results should not be viewed in lesser terms. Figures \ref{c1 coefficient} c) and d) support the idea that not all parameters represent the transition trivially. In c), the alignment with the wall is too intense, so bacteria do not get trapped even for higher curvatures. In d) the thermal fluctuations dominate so bacteria can not leave the valleys. We could say that $K$ and $D_r$ have opposite effects. Higher values of $K$ means that bacteria allign with the wall more quickly but higher $D_r$ introduces more thermal noise that make bacteria go to the curved wall. In fact, there is many combinations of $K$ and $D_r$ that replicates the transition. We will call candidates, such pairs of $K$ and $D_r$ that replicate the transition similarly to \ref{c1 coefficient} b). We used the pair $K=3.5$ and $D_r=0.015$ for figure \ref{c1 coefficient} because the values are closer, but as mentioned they are not the same.
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/candidate_profiles}
+	\caption[Comparison of intensity profiles within experiments and candidates]{ Intensity profiles for experiments and candidates. Rows have the same amplitude $A$, and columns the same wavelength $\lambda$. Row order is $A\sim$ \SIlist[list-units=single, list-final-separator = {, }]{3;6;9}{\micro\meter} and column order is $\lambda=$ \SIlist[list-units=single, list-final-separator = {, }]{24;27;30}{\micro\meter}. The x-y axis scales are adjusted depending on the amplitude and wavelength, in pursue of a clear display of the data. }
+	\label{candidates intensity profiles}
+\end{figure}
+}
+
+Figure \ref{candidates intensity profiles} shows intensity profiles obtained in simulations of candidates, compared to the measured in experiments for values of $A$ and $\lambda$ that are of interest for the transition. This comparison is very demanding for the simulations. The intensity profiles in the experiments are subject to a variety of effects that the simulations do not capture. For example, experimental profiles are often asymmetric, possibly due to inhomogeneities in density causing more bacteria to come from one side, in this case the right. But this is not the only important difference. In profiles d), e) we see that the simulations do not predict a drop in the intensity values at the ends of the profile when the transition is formed, only the amplitude of the accumulation is properly predicted by the $K=3.5$, $D_r=0.015$ profile. Also in profile f) the experiment is flat, so $K=5.0$ is the closest curve, in opposition of the previous case. We conclude that there is no perfect candidate to replicate the exact results of all experiments. Since $D_r$ should not depend on curvature is hard to think on a dependence of curvature for the parameters. Nevertheless, the model is close in values and behavior for all of the candidates. The color plots of $c_1$ in $A$, $\lambda$ space are an oversimplification and so they should be interpreted as a qualitative replication of the results in the experiments. Exact quantitative predictions for the profiles are not achievable with this model.
+
+\section{Tracking}
+
+Following methodology described in section 2.2.4, we track bacteria movement. The method determines bacteria position $\textbf{r}_i$ for each frame and then form links between detections to create the trajectories. This is an automatic process subject to errors, but mostly gives correct results. We can calculate the velocity of particle $i$ in a frame $t$ as:
+
+\begin{equation}
+    \dot{\textbf{r}}_i(t) =  \frac{\textbf{r}_i(t+dt)-\textbf{r}_i(t)}{dt},
+\end{equation}
+
+where is $dt$ is the time difference between two succesive detections in a trajectory. Time resolution is \SI{100}{\milli\second}, but $dt$ can be greater if particles are not detected for a brief time, for example, in the case of collisions. The maximum value of $dt$ allowed is \SI{500}{\milli\second}. In simulations both, $\textbf{r}_i$ and $\dot{\textbf{r}}_i$ are numerically calculated on each time step. Statistics of these vectors, will reveal more information about the dynamics of the system.
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/speed_distribution}
+	\caption[Probability density function of the speed, comparison between non-normalized and normalized speed.]{ Probability density functions for the speed in four different videos. a) and b) distributions for the non-normalized speed $v$ in the bulk and in the curved wall, respectively. c) and d) distributions for the normalized speed $v/v_{\text{bulk}}$ in the same experiments. a) shows distributions in the bulk with different means, but in c) we can see how the distributions in the bulk are comparable thus justifying the usage of the normalized speed instead of $v$. Also, in the curved wall the distributions are similar but the red curved presents an increase on $v=0$. This is important to note, because there is a high variation between experiments.}
+	\label{speed distribution: normalization}
+\end{figure}
+}
+
+\subsection{Speed distribution}
+
+We begin by considering the probability density function of the speed $v$. Caution is required when comparing that quantity for different experiments. Cell motility is not always exactly the same. It is affected by the use of the micropipette, presence of oxygen and centrifugation. In figure \ref{speed distribution: normalization} we show measurments of this probabilities for the experiment with $\lambda=$ \SI{30}{\micro\meter} and $A=$ \SI{5.6}{\micro\meter} in two different days for four videos. Figure \ref{speed distribution: normalization} a) shows the speed on the bulk of the system, namely outside of the bands of both walls. There are major differences on the means of these distributions. In figure \ref{speed distribution} b) the speed distribution on the curved wall is shown. The differences carry on to these probability densities. Considering this, we use the normalized speed $v/v_{\text{bulk}}$ to compare between different experiments, where $v_{\text{bulk}} = \langle v \rangle_{\text{bulk}} $ is the mean speed in the bulk of the system for a specific video. In figures \ref{speed distribution: normalization} c) and d) we plot the results for the normalized velocity. This normalization assures experiments have comparable distributions. From now on, we will only compare the normalized dimensionless velocity, and so experimental distributions will consider all experiments.
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/speed_distribution_comparison}
+	\caption[Comparisons of the probability density functions for the normalized velocity in contact with the curved wall, between experiments and simulations.]{Probability density functions of speed in contact with the curved wall, for experiments and simulations. Same labels as in figure \ref{candidates intensity profiles} and values of $A$, $\lambda$
+	}	
+	\label{speed distribution: comparison}
+\end{figure}
+}
+
+In figure \ref{speed distribution: comparison} we compare results from experiments and simulations for the velocity distributions. Comparing with figure \ref{candidates intensity profiles}, is possible to see how the transition corresponds to a decrease of normalized speed in the curved wall to near zero values. \textcolor{red}{Note: Missing simulation results, will elaborate more then.}
+
+\subsection{Velocity profiles}
+
+Following the idea of intensity profiles, we now dedicate to explain velocity profiles. If a particle $i$ is in the curved wall band with position $\textbf{r}_i =(x_i, y_i)$, we can assign a interval in the x-axis defined as $[x_k-\Delta x/2,x_k+\Delta x/2]$ where $x_k$ is the center of the interval where $x_i$ is contained. This creates a set of observations $\mathcal{O}_k$ associated with the interval defined by $x_k$. For each value $x_k$ we define $v(x_k)$ the mean velocity in the set of observations $\mathcal{O}_k$ that are inside the interval. Particles in the band are probably in contact with the wall, so vertical position does not reveal more information. The definition is the same for experiments and simulations, but in experiments $\Delta x $ = \SI{1}{\micro\meter} is considered, meanwhile in simulations $\Delta x $ = \SI{0.32}{\micro\meter} as usual in the intensity profiles. The reason for this change for the experiments is that in the less frequented positions, there is few data, so by losing resolution it is possible to increase the size of $\mathcal{O}_k$ in those cases. This is essential for the cases were bacteria are trapped in the valley. Figure \ref{velocity profiles} h) shows a case where two points have high errorbar due to the small size of $\mathcal{O}_k$. 
+
+\afterpage{%
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/velocity_profiles}
+	\caption[Velocity profiles compared between experiments and simulations.]{Velocity profiles $v(x)$ for experiments and simulations with the same labels of figure \ref{candidates intensity profiles} and values of $A$, $\lambda$. Errorbars are de $95\%$ interval of confidence por the estimation of the mean $v(x)$. a), b) and c) are low amplitude cases where we can see a reduction on velocity in the valley for experiments, but simulations predict a lower decrease. Apart from that, simulations predict values appropriately, specially the $K=3.5$, $D_r=0.015$ case. In simulations, bacteria slow down because of collision force with the wall.}	
+	\label{velocity profiles}
+\end{figure}
+}
+
+\newpage
+% Parrafo del final del caítulo
+These observations raise an important question. What is the relevance of a qualitative description? Theoretical studies offer quantitative predictions that inspire new experiments or give a better understanding of the phenomena. In our case, the model is very simple and does not predict intensity profiles exactly. It is hard to trust in the model for predictions in a different scenario. Nevertheless, we think the importance of the model relies precisely on its simplicity. We are able to predict the accumulation transition considering two important physical phenomena, rotational diffusion and the alignment with the wall. The spherocylindrical shape of cells, the friction with the wall, collision between cells, and even hydrodynamic effects caused by the movement of the flagela are not considered in these results. There is so much physics involved in these experiments, but a model with such little considerations predicts the main observed transition. This can mean only one thing, the dynamics of cells near sinusoidal walls is dominated by the effects described in the model. Since rotational difussion is present even for flat walls, we conclude that steric alignment of cells with the wall is the main reason for cells to leave sinusoidal walls. 
+
+
+
