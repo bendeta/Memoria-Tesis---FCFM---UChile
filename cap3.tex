@@ -2,144 +2,162 @@
 
 \section{Theoretical framework}
 
-We consider an agent-based model of spherical active particles with overdamped dynamics in a 2-dimensional representation. This section explains what it means and the reasons for these model features.
+This section explains details of the model considered and the criteria used for its election. We consider an agent-based model of spherical active particles with overdamped dynamics in a 2-dimensional representation. 
 
+\subsection{Agent-based models} 
 
-\subsection{Continuum vs agent-based models} 
-
-In our case, we are interested in modeling an active suspension. Active suspensions exhibit different phenomena depending on the bacteria and the environment. Thus, the model's features vary depending on the specific properties of the case of study. 
-
-It is customary to construct microscopic models that focus on the swimming of individual bacterium. These are called agent-based models. The dynamics will consist of many terms of clear origin, allowing for a direct interpretation. 
-
-There is also an alternative modeling approach based on deriving a conservation equation for the distribution of cells. This continuum approach considers that there is a distribution $\Psi(\textbf{r},\textbf{p},t)$ that models the probability of finding a particle at position $\textbf{r}$ swimming in the direction $\textbf{p}$ at time t. The evolution for $\Psi(\textbf{r},\textbf{p},t)$ is described by a continuity equation
-
-\begin{equation}
-\partial_t \Psi + \nabla_{\textbf{r}} \cdot ( \dot{\textbf{r}} \Psi ) + \nabla_{\textbf{p}} \cdot ( \dot{\textbf{p}} \Psi   ) = 0,
-\end{equation}
-
-where the quantites $\dot{\textbf{r}}$ and $\dot{\textbf{p}}$ are often obtained from microscopic models. The $\Psi(\textbf{r},\textbf{p},t)$ distribution allows to calculate statistical fields such as bacteria concentration $c(\textbf{r},t)$ and mean swimming orientation $\textbf{n}(\textbf{r},t)$ as integrals on $\textbf{p}$ of $\Psi$:
-
-\begin{align}
-	c(\textbf{r},t) &= \int \Psi(\textbf{r},\textbf{p},t) d\textbf{p}, \\
-	\textbf{n}(\textbf{r},t) &= \int \textbf{p} \Psi(\textbf{r},\textbf{p},t)d\textbf{p}.
-\end{align}
-
-The field dynamics are derived by integrating the continuity equation for $\Psi$. This coarse-grained description of the system is enough to understand many phenomena such as pattern formation and flocking \cite{Saintillan2008InstabilitiesSimulations,Toner1998FlocksFlocking}. This procedure is widespread in the biophysics community because it permits theoretical investigations of active suspensions via the fields. Nevertheless, these models require a high density present in the system to give the distribution $\Psi$ a tangible relevance compared to experiments.  In our case, we are studying a low-density suspension, as bacteria occupy a small fraction of the ROI. Due to this, we will consider an agent-based model even if that means there is less possibility to perform theoretical calculations.
+In biophysics, models can be sorted into two classes, agent-based, and continuum models. Agent-based models simulate the dynamics of cells individually, offering accurate system descriptions. Depending on the complexity of the model, they can be costly in a computational sense. On the other hand, continuum models consider a coarse-grained description with density and velocity fields. We work in a low-density regime, so a continuum description is meaningless. Therefore, we will use agent-based models. For simplicity, we consider cells with spherical shapes. In reality, the cell shape depends on the growth phase of the bacteria culture, but \textit{E.coli}'s body is a spherocylinder with typical dimensions of \SI{0.5}{\micro\meter} in radius and \SI{2}{\micro\meter} in length.
 
 \subsection{Overdamped dynamics}
 
-We will consider cells with spherical shapes as a simplification of the model. In reality, cell shape depends on the growth phase of the bacteria culture, but \textit{E.coli}'s body is a spherocylinder typically with a \SI{0.5}{\micro\meter} radius and \SI{2}{\micro\meter} length. To describe the dynamics of single cells, we invoke Newton's second law, so we write: 
+To describe the dynamics of single cells, we invoke Newton's second law: 
 
 \begin{equation}
-	m\ddot{\textbf{r}} = \sum \textbf{F} = \textbf{F}_h + \textbf{F}_f + \textbf{F}_b + \textbf{F}_c ,
+	m\ddot{\textbf{r}} = \sum \textbf{F} = \textbf{F}_{\text{hydro}} + \textbf{F}_{\text{flag}} + \textbf{F}_{\text{brown}} + \textbf{F}_{\text{coll}} ,
 \end{equation}
 
-where we define four different force sources, \textbf{F}$_h$ the hydrodynamic friction produced by the fluid, \textbf{F}$_f$ the force produced by the flagella, \textbf{F}$_b$ the Brownian force due to collisions with the liquid molecules, and \textbf{F}$_c$ produced due to cell-cell and cell-surface collisions. We can deduct an important fact widely accepted in biophysics with the following analysis. Let's imagine we have a free of collisions \textit{E.coli} bacterium that dies and stops swimming, so $\textbf{F}_f = \textbf{F}_c =0$. The influence of $\textbf{F}_b$, in this case, is essential. Still, it will not be considered as its effect is stochastic. If we repeat the situation many times and average the ensemble, its contribution is expected to be zero. Then we are left with the equation:
+where we define four different force sources, $\textbf{F}_{\text{hydro}}$ the hydrodynamic friction produced by the fluid, $\textbf{F}_{\text{flag}}$ the force produced by the flagella, $\textbf{F}_{\text{brown}}$ the Brownian force due to collisions with the liquid molecules, and $\textbf{F}_{\text{coll}}$ produced due to cell-cell and cell-surface collisions. We can deduce an important fact widely accepted in biophysics with the following analysis. To analyze the role of inertia, let's imagine we have isolated \textit{E.coli} bacterium that suddenly stops swimming, so $\textbf{F}_{\text{flag}} = \textbf{F}_{\text{coll}} =0$. Although the influence of $\textbf{F}_{\text{brown}}$ is essential, its effect is stochastic. If we repeat the situation many times and average the ensemble, its contribution is expected to be zero. Therefore, for the moment, we will neglect it. Then we are left with the equation:
 
 \begin{equation}
-	m\ddot{\textbf{r}} = \textbf{F}_h = -\gamma \dot{\textbf{r}} = - 6 \pi R \eta \dot{\textbf{r}},
+	m\ddot{\textbf{r}} = \textbf{F}_{\text{hydro}} = -\gamma \dot{\textbf{r}} = - 6 \pi R \eta \dot{\textbf{r}},
 \end{equation}
 
-where we used Stokes' law to calculate the drag force coefficient $\gamma$ with $R=$\SI{0.5}{\micro\meter} being the particle radius and $\eta=$\SI{d-3}{\pascal\cdot\second} the viscosity. Since the mass of an \textit{E.coli} is $m=$\SI{d-12}{\gram}, the characteristic time of slowing down is given by $ \frac{m}{6 \pi R \eta} \approx $\SI{d-7}{\second}. This means that in the time scale of \SI{1}{\micro\second} the bacteria should have stopped. We record at 10 fps in our experiments, so the slow down is immediate for our time resolution. Then we are working on the overdamped limit, where inertia is meaningless, and it is customary to simplify the dynamics as:
+where we used Stokes' law to calculate the drag force coefficient $\gamma$ with $R=$ \SI{0.5}{\micro\meter} being the particle radius and $\eta=$ \SI{d-3}{\pascal\cdot\second} the viscosity. Since the mass of an \textit{E.coli} is $m=$ \SI{d-12}{\gram}, the characteristic time of slowing down is given by $ m/(6 \pi R \eta) \approx $ \SI{d-7}{\second}. This means that in the timescale of \SI{1}{\micro\second} the bacteria should have stopped. We record at ten fps in our experiments, so the detention is immediate for our time resolution. This means that we are working on the overdamped limit, where inertia is negligible, and so it is correct to simplify the dynamics as:
 
 \begin{equation} \label{eq:overdamped_model}
-	\gamma \dot{\textbf{r}} = \textbf{F}_f + \textbf{F}_b + \textbf{F}_c.
+	\gamma \dot{\textbf{r}} = \textbf{F}_{\text{flag}} + \textbf{F}_{\text{brown}} + \textbf{F}_{\text{coll}}.
 \end{equation}
 
 \subsection{Rotational diffusion}
 
-As the effect of the fluid, we have considered two different effects. First $\textbf{F}_h$ a phenomenological drag force that represents the average effect of the liquid and second, $\textbf{F}_b$ of stochastic class accounting for the thermal fluctuations. The latter produces a mean square displacement of $\langle r^2 \rangle (t) = 4 D t $ where $D$ is the diffusion constant given by the fluctuation-dissipation theorem \cite{Soto2016KineticPhenomena}:
+We considered two different effects of the fluid in the bacterial dynamics. First, $\textbf{F}_{\text{hydro}}$ is a phenomenological dynamical drag force that represents the average effect of the liquid on an object moving through the fluid, and second, $\textbf{F}_{\text{brown}}$ of stochastic kind accounting for the thermal fluctuations. The latter produces a mean square displacement of $\langle r^2 \rangle (t) = 4 D t $ where $D$ is the diffusion constant given by the fluctuation-dissipation theorem \cite{Soto2016KineticPhenomena}:
 
 \begin{equation}
 	D = \frac{k_bT}{\gamma} \approx \SI[per-mode = symbol]{1.5d-1}{\square\micro\meter \per \second},
 \end{equation}
  
-where the same value for $\gamma$ was used. This diffusion constant is purely translational. Nevertheless, the forces involved in cell-molecules collisions also exert torques on the bacteria, meaning that the orientation of swimming is subject to an equivalent stochastic process. This process has a rotational diffusion constant $D_r$ independent of $D$. For smooth-swimming \textit{E.coli} it has been measured to be $D_r=$\SI[per-mode = symbol]{0.057}{\square\radian \per \second} \cite{Drescher2011FluidScattering}. We can perceive the importance of rotational diffusion by focusing on the flagellar force of equation \eqref{eq:overdamped_model} as described in \cite{Lauga2020TheMotility}.
+where the same value for $\gamma$ was used. This diffusion constant is purely translational. Nevertheless, the collisions between cells and water molecules also exert torques on the bacteria, meaning that the orientation of swimming is subject to an equivalent stochastic process. This process has a rotational diffusion constant $D_r$ independent of $D$. For smooth-swimming \textit{E.coli} it has been measured at $D_r=$ \SI[per-mode = symbol]{0.057}{\square\radian \per \second} \cite{Drescher2011FluidScattering}. We can perceive the importance of rotational diffusion by neglecting collisions in equation \eqref{eq:overdamped_model} and calculating the mean square displacement as described in\cite{Lauga2020TheMotility}.
 
 \begin{equation} \label{eq:flagellar force}
-	 \dot{\textbf{r}} =\frac{\textbf{F}_f}{\gamma} = u \textbf{p},
+	 \dot{\textbf{r}} =\frac{\textbf{F}_{\text{flag}} + \textbf{F}_{\text{brown}} }{\gamma} = u \textbf{p} + \textbf{F}^*_{\text{brown}},
 \end{equation}
 
-where $u=$\SI[per-mode = symbol]{20}{\micro\meter \per \second} is the mean speed of bacteria and $\textbf{p}$ the previously defined vector of orientation. We are ignoring collisions namely $\textbf{F}_c$ and exploiting the fact that the diffusion of $\textbf{F}_b$ is independent of the one we are currently descrbing. Integrating equation \eqref{eq:flagellar force} in time we obtain:
+where $u=$\SI[per-mode = symbol]{20}{\micro\meter \per \second} is the mean speed of bacteria, $\textbf{p}$ the previously defined vector of orientation, and $\textbf{F}^*_{\text{brown}}$ is just the force with the coefficient $\gamma$ absorbed. Integrating equation \eqref{eq:flagellar force} in time we obtain:
 
 \begin{equation} \label{eq:positon}
-	\textbf{r}(t) = \int_0^t u \textbf{p}(t^\prime)dt^\prime,
+	\textbf{r}(t) - \cancelto{0}{\textbf{r}(0)}  = \int_0^t [u \textbf{p}(t^\prime) +  \textbf{F}^*_{\text{brown}}(t^\prime)  ]dt^\prime ,
 \end{equation}
 
 Taking the dot product of \eqref{eq:flagellar force} and \eqref{eq:positon} we obtain an equation for the time derivative of the square displacement.
 
-\begin{equation} 
-	\dot{\textbf{r}} \cdot \textbf{r} = \frac{1}{2}\frac{d}{dt} (r^2) = u^2 \int_0^t  \textbf{p}(t^\prime) \cdot \textbf{p}(t)dt^\prime.
+\begin{equation} \label{eq:derivative of msd}
+	\dot{\textbf{r}} \cdot \textbf{r} = \frac{1}{2}\frac{d}{dt} (r^2) = u^2 \int_0^t [ \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime)]dt^\prime + \text{irrelevant terms}.
 \end{equation}
 
-The quantity $\textbf{p}(t^\prime) \cdot \textbf{p}(t)$ is the time correlation of the vector director \textbf{p} and varies from cell to cell, as the rotational diffusion is also stochastic. Nevertheless its mean for all particles dependes on the rotational diffusion coefficient as $e^{-2D_r(t-t^\prime)}$ \cite{Lauga2020TheMotility}. Therefore, averaging on the ensemble and integrating over both $t$ and $t^\prime$ we obtain:
+
+All the terms in the right side of equation \eqref{eq:derivative of msd} are stochastic and vary from cell to cell. Nevertheless, their average for all particles has properties that allow progress in the calculation. For example, the terms cataloged as irrelevant consider dot products of two quantities completely uncorrelated, the director vector $\textbf{p}$ and the force $\textbf{F}^*_{\text{brown}}$. Therefore after averaging on the ensemble of cells, the result is zero, and we are left with: 
+
+\begin{equation} 
+	\frac{d}{dt} \langle r^2 \rangle &= 2u^2 \int_0^t \langle \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime) \rangle dt^\prime.
+\end{equation}
 
 
-\begin{align} 
-    \frac{d}{dt} \langle r^2 \rangle &= 2u^2 \int_0^t e^{-2D_r(t-t^\prime)}dt^\prime, \\
-    \langle r^2 \rangle (t) &= \frac{u^2}{D_r}\left( t + \frac{e^{-2D_rt}}{2D_r} - \frac{1}{2D_r} \right)
-\end{align}
+The quantity $\langle\textbf{p}(t^\prime) \cdot \textbf{p}(t)\rangle$ is the mean time correlation of the vector director \textbf{p} and depends on the rotational diffusion coefficient as $e^{-2D_r|t-t^\prime|}$ \cite{Lauga2020TheMotility}. On the other side $\textbf{F}^*_{\text{brown}}$ is assumed to be an uncorrelated noise, that satisfies $\langle \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime) \rangle = 2D\delta(t^\prime -t)$. Therefore, integrating over both $t$ and $t^\prime$ we obtain:
 
-At short times,  $t << D_r^{-1} =$\SI{18}{\second} the exponential can be expanded in a taylor series $e^{-2D_rt}\approx 1 - 2D_rt + 2(D_r t^2) + \mathcal{O}(t^3)$ giving $\langle r^2 \rangle (t)  \approx (ut)^2$, which means that at short times particles swim is straight lines. This effect is more important than diffusion at this time scale as $4Dt$ is some order of magnitude lower. In the other case $t >> D_r^{-1}$ the mean square displacement is $\frac{u^2t}{D_r}$. Adding the translational diffusion discussed previously, we deduct an effective diffusion constant for long times $D_{eff}$ given by:
+
+\begin{equation} 
+    \langle r^2 \rangle (t) = \frac{u^2}{D_r}\left( t + \frac{e^{-2D_rt}}{2D_r} - \frac{1}{2D_r} \right) + 4Dt
+\end{equation}
+
+At short times,  $t \ll D_r^{-1} =$ \SI{18}{\second} the exponential can be expanded in a Taylor series $e^{-2D_rt}\approx 1 - 2D_rt + 2(D_r t^2) + \mathcal{O}(t^3)$ giving $\langle r^2 \rangle (t)  \approx (ut)^2$, which means that at short times particles swim is straight lines. Bacteria swimming is more important than diffusion even at our lowest time scale of $t=$ \SI{0.1}{\second}, as in that case $4Dt$ is two order of magnitude lower than $(ut)^2$. In the other case $t \gg D_r^{-1}$ the mean square displacement is $(u^2/D_r+4D)t$. Adding the translational diffusion discussed previously, we deduce an effective diffusion constant for long times $D_{\text{eff}}$ given by:
 
 \begin{equation}
-    D_{eff} = D + \frac{u^2}{4D_r}
+    D_{\text{eff}} = D + \frac{u^2}{4D_r}
 \end{equation}
 
-For the typical values mentioned, $D_{eff}\approx$\SI[per-mode = symbol]{2d3}{\square\micro\meter \per \second} which is four orders of magnitude greater than $D$. This means that bacteria swimming makes translational Brownian motion irrelevant compared to the effects of rotational diffusion. We conclude that $\textbf{F}_b$ can be set to zero for simplicity without losing relevant dynamics. We are left with the equation:
+For the typical values mentioned, $D_{\text{eff}}\approx$ \SI[per-mode = symbol]{2d3}{\square\micro\meter \per \second} which is four orders of magnitude larger than $D$. This means that bacteria swimming makes translational Brownian motion irrelevant compared to the effects of rotational diffusion. We conclude that $\textbf{F}_{\text{brown}}$ can be set to zero for simplicity without losing relevant dynamics. We are left with the equation:
 
 \begin{equation} \label{eq:final_model}
-    \dot{\textbf{r}} = u\textbf{p} + \frac{1}{\gamma}\textbf{F}_c = u\textbf{p} + \tilde{\textbf{F}}_c  .
+    \dot{\textbf{r}} = u\textbf{p} + \frac{1}{\gamma}\textbf{F}_{\text{coll}} = u\textbf{p} + \textbf{F}^*_{\text{coll}} ,
 \end{equation}
 
-\subsection{Surface effects}
+where $\textbf{F}^*_{\text{coll}}$ absorbs the drag coefficient $\gamma$ and hence has units of speed.
 
-\begin{wrapfigure}{r}{0.5\linewidth}
-\centering
-\includesvg[width=\linewidth]{imagenes/circular_trajectories}
-\caption[Circular trajectories near walls]{Example of three circular trajectories seen in an experiment. The star symbol indicates the beginning of a track while the triangle the end. The video used for this figure had 12 trajectories with circular sections of 302, which is $4\%$. The three trajectories shown are the longest ones.}
-\label{circular trajectories}
-\end{wrapfigure}
+\subsection{Alignment with the wall}
+\label{section:steric alignment}
 
-In the introduction in chapter 1, we discussed multiple effects of the surface in bacteria. These effects depend on the swimming properties, body and flagella shape, and surface properties. Even so, we observe some of them in our experiments. Here we discuss which were considered relevant for the model.
+We observe that bacteria interacting with the curved and flat walls, suffer a torque that aligns them with the wall \cite{Bianchi2017HolographicBacteria}. This alignment has its origin on steric forces. If we consider equation \eqref{eq:final_model} and take the dot product with the vector perpendicular to the surface  $\hat{\textbf{n}}_w$ at the point of contact, we obtain:
 
-First, we see circular swimming trajectories on the frontal surface, caused by hydrodynamic interactions between the cell and the boundary \cite{Lauga2006SwimmingBoundaries}. In figure \ref{circular trajectories} we display three example trajectories. The percentage of trajectories observed that display circular movement is $4\%$ for the experiment used for the figure. Thus, the phenomenon is marginal and so not implemented in the model. 
+\begin{equation} \label{eq:steric_force}
+   \cancelto{0}{\dot{\textbf{r}} \cdot \hat{\textbf{n}}_w}  = u\textbf{p} \cdot \hat{\textbf{n}}_w + \textbf{F}^*_{\text{coll}} \cdot \hat{\textbf{n}}_w ,
+\end{equation}
 
-Second, we observe that cells rarely leave the focal plane. This behavior is produced due to hydrodynamic interactions that trap bacteria in the surface \cite{Sipos2015HydrodynamicWalls, Li2011AccumulationSurface}. This effect validates the 2-dimensional aspect of the model. 
+where $\dot{\textbf{r}} \cdot \hat{\textbf{n}}_w = 0$ is imposed as bacteria do not enter the surface. Since $\textbf{F}^*_{\text{coll}} \cdot \hat{\textbf{n}}_w $ is exclusively perpendicular to the wall, equation \eqref{eq:steric_force} gives the magnitude of such force. Then we can write the equation for the angle of swimming $\theta$ considering that the inertia of the cell is negligible and so that the sum of torques must be zero. Simplifying the system, we consider the torques repect to the center of mass as the rotational drag and the torque exerted by the wall. Other torques can be considered for more complete models to explain observations such as circular trajectories and longer residence times in the wall \cite{Lauga2006SwimmingBoundaries, Sipos2015HydrodynamicWalls}. For this thesis we decided to work with a simple model because these effects are not required to explain the abandonment of the curved wall by bacteria. Utilizing equation \eqref{eq:steric_force}, 
 
-Third and finally, we observe that bacteria interacting on the edges of the experiment, i.e. the curved and flat walls, suffer a torque that aligns them with the wall \cite{Bianchi2017HolographicBacteria}. This alignment has its origin on steric forces. To model this effect we define the vector $\textbf{p}$ via and angle $\theta$ and write:
+\begin{equation} \label{eq:deduction_of_K}
+    0 = - \gamma_r \dot{\theta} \hat{\textbf{z}} - u \gamma (\textbf{p} \cdot \hat{\textbf{n}}_w) (\textbf{r}_{cm} \times \hat{\textbf{n}}_w),
+\end{equation}
+
+where $\gamma_r$ is the rotational drag coefficient and $\textbf{r}_{cm}$ the vector from the center of mass to the point of contact, as we are calculating the torque with respect to the center of mass. Therefore, $\textbf{r}_{cm} \times \hat{\textbf{n}}_w = L_{cm} (\textbf{p} \cdot \hat{\textbf{t}}_w) \hat{\textbf{z}}$ where $\hat{\textbf{t}}_w$ is the tangential vector to the wall in the point of contact that satisfies $\hat{\textbf{z}} = \hat{\textbf{t}}_w \times \hat{\textbf{n}}_w$  and we used $\textbf{r}_{cm} = L_{cm} \textbf{p} $ to take into consideration the contribution of the flagella to the center of mass. We are left with the equations:
 
 \begin{align}
     \textbf{p} &= \cos{\theta}\hat{\textbf{x}}+\sin{\theta}\hat{\textbf{y}}, \\
-    \dot{\theta} &= K (\textbf{p} \cdot \hat{\textbf{t}}_w)  (\textbf{p} \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}, \textbf{p}),
+    \dot{\theta} &= -K (\textbf{p} \cdot \hat{\textbf{t}}_w)  (\textbf{p} \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}, \textbf{p}),
     \label{eq:wall alignment}
 \end{align}
 
-where $\hat{\textbf{t}}_w$ and $\hat{\textbf{n}}_w$ are the tangential and normal vector of the wall in the closest point to the cell. These vectors satisfy $\hat{\textbf{n}}_w = \hat{\textbf{z}} \times \hat{\textbf{t}}_w$ and $\hat{\textbf{n}}_w$ points away from the wall. Also, $\Gamma(\textbf{r}, \textbf{p})$ is a step function equal to $1$ when the cell is in contact with the wall and $0$ otherwise. Contact is defined as the center of the particle $\textbf{r}$ is less than one radius near the closest point of the wall, and the direction of swimming suffices $\textbf{p} \cdot \textbf{n} < 0$ indicating the cell is going into the wall and not away from it. Equation \eqref{eq:wall alignment} will align the vector $\textbf{p}$ with the $\pm\hat{\textbf{t}}_w$ depending on the sign of $\textbf{p} \cdot \hat{\textbf{t}}_w$. This effect is only considered for the flat and curved wall as the frontal wall is already taken into account because simulations are 2-dimensional.
+where $K\equiv u L_{cm}\gamma / \gamma_r$. The scalar $K$ controls the intensity of the alignment and in \cite{Bianchi20193DInterface} a fit of experimental data yields $K=$ \SI[per-mode = symbol]{4.9}{\radian \per \second}. In our study we consider $K$ as a free parameter with values between \SIlist[per-mode = symbol, list-units=single]{0;7}{\radian\per\second}. This is because we are considering the more complicated case of a curved wall. Also, $\Gamma(\textbf{r}, \textbf{p})$ is a step function that indicates if the bacteria is in contact with the wall or not. It is equal to $1$ when the distance from the center of the particle $\textbf{r}$ to the closest point of the wall is smaller than one radius, and its swimming direction points towards the wall i.e. $\textbf{p} \cdot \hat{\textbf{n}}_w < 0$ indicating the cell is going into the wall and not away from it. Otherwise $\Gamma$ equals zero.  Equation \eqref{eq:wall alignment} will align the vector $\textbf{p}$ with the $\pm\hat{\textbf{t}}_w$ depending on the sign of $\textbf{p} \cdot \hat{\textbf{t}}_w$. This effect is only considered for the flat and curved wall as the frontal wall is already taken into account because simulations are two-dimensional.
+
+\begin{wrapfigure}{r}{0.5\linewidth}
+\centering
+\includesvg[width=\linewidth,height=4cm]{imagenes/cp_wall_diagram}
+\caption[Diagram of the components involve in the wall allignment]{Diagram of the components involve in the wall alignment. $O$ represents the origin of coordinates.}
+\label{circular trajectories}
+\end{wrapfigure}
+
+We calculate the point of contact as the closest point in the walls to the cell by dividing the interval $[x-R, x+R]$ in 300 points where $x = \textbf{r} \cdot \hat{x}$. Then, we calculate the distance between the cell and the position obtained with the parametric definition of the wall for each point. The point $\textbf{r}_w$ with the lowest distance is the closest with a precision of \SI{3d-3}{\micro\meter}. This ``brute force" algorithm works because a point outside of the interval $[x-R, x+R]$ is not in contact with the cell, and it is convenient because the distance to the wall as a function of the x-axis has many local minima.
+
+% \vspace{1cm}
 
 \section{Simulations}
- 
-\subsection{Final details of the model}
 
-Equations \eqref{eq:final_model}-\eqref{eq:wall alignment} summarize the physics involved in the description of the system. We are only missing two aspects; rotational diffusion and the details of $\textbf{F}_c$. Rotational diffusion is naturally added to \eqref{eq:wall alignment} as a gaussian white noise $\eta$ \cite{Digregorio2018FullSeparation,Caporusso2020Motility-InducedSystem} meaning it has zero mean and its completly uncorrelated, $\langle \eta(t)\eta(t^\prime)  \rangle &= \delta (t-t^\prime)$. Meanwhile $\textbf{F}_c$ is considered as an elastic force for both cell-cell and cell-wall collisions. The final set of equations that are used in the model are:
+Equations \eqref{eq:final_model}--\eqref{eq:wall alignment} summarize the physics involved in the description of the system. We are only missing two aspects; rotational diffusion and the details of $\textbf{F}_{\text{coll}}^*$. This section first explains how we implement these phenomena, summarize the model, and finally explain how the simulations are performed.
+ 
+\subsection{The collision force}
+
+$\textbf{F}^*_{\text{coll}}$ is the force produced by the collision of cells with other cells or the wall, but divided by the drag coefficient $\gamma$. We considered it as an elastic force for both cell-cell and cell-wall collisions. We parameterize these forces through the following equation: 
+
+\begin{equation}
+   \textbf{F}^*_{\text{coll}} &= \sum_{w} k_{\text{wall}} (R-d_{iw}) \hat{\textbf{d}}_{iw}\Theta(R-d_{iw}) + \sum_{j \in \mathbb{NN}} k_{\text{cell}} (2R-d_{ij}) \hat{\textbf{d}}_{ij}\Theta(2R-d_{ij}),
+\end{equation}
+ 
+where $d_{iw}$, $\hat{\textbf{d}}_{iw}$ represent the distance and the unit vector between the particle $i$ and the closest point of the wall $w$, and $d_{ij}$, $\hat{\textbf{d}}_{ij}$ are the same but between the particles $i,j$ where $j$ is one of the particles in the nearest neighbor of $i$ set $\mathbb{NN}$. $\Theta$ is the usual Heaviside function. Finally the parameters $k_{\text{wall}}$, $k_{\text{cell}}$ are the intensities of these forces, and have units of \SI[per-mode = symbol]{}{\micro\meter\per\second\per\meter}. We consider $k_{\text{wall}}=$ \SI[per-mode = symbol]{1d3}{\micro\meter\per\second\per\meter}, meanwhile $k_{\text{cell}}$ will be considered as zero and the increased to study the effects of cell in the phenomena observed.
+
+\subsection{Rotational diffusion}
+
+ Rotational diffusion is naturally added to \eqref{eq:wall alignment} as a Gaussian white noise $\eta_i(t)$ \cite{Digregorio2018FullSeparation,Caporusso2020Motility-InducedSystem} meaning it has zero mean and its completly uncorrelated in time and between particles, $\langle \eta_i(t)\eta_j(t^\prime)  \rangle \propto \delta_{ij}\delta (t-t^\prime)$. This white noise will change randomly the direction of swimming $\textbf{p}$ of the cell. We will go into more detail in this section.
+ 
+\subsection{Final model}
+
+The final set of equations that are used in the model are:
 
 \begin{align}
     \label{eq:dynamics of position}
-    \dot{\textbf{r}}_i &= u\textbf{p}_i + \tilde{\textbf{F}}_c, \\
+    \dot{\textbf{r}}_i &= u\textbf{p}_i + \textbf{F}^*_{\text{coll}}, \\
     \textbf{p}_i &= \cos{\theta_i}\hat{\textbf{x}}+\sin{\theta_i}\hat{\textbf{y}}, \\
     \label{eq:dynamics of angle}
-    \dot{\theta}_i &= K (\textbf{p}_i \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i, \textbf{p}_i) + \sqrt{2D_r}\eta(t), \\
+    \dot{\theta}_i &= -K (\textbf{p}_i \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i, \textbf{p}_i) + \eta_i(t), \\
     \label{eq:elastic force}
-    \tilde{\textbf{F}}_c &=   k_{wall} (R-d_{iw}) \hat{\textbf{d}}_{iw}\Theta(R-d_{iw}) + \sum_{j \in \mathbb{NN}} k_{cell} (2R-d_{ij}) \hat{\textbf{d}}_{ij}\Theta(2R-d_{ij}).
+    \textbf{F}^*_{\text{coll}} &=   k_{\text{wall}} (R-d_{iw}) \hat{\textbf{d}}_{iw}\Theta(R-d_{iw}) + \sum_{j \in \mathbb{NN}} k_{\text{cell}} (2R-d_{ij}) \hat{\textbf{d}}_{ij}\Theta(2R-d_{ij}).
 \end{align}
 
-All of the quantities used in these equations and on the model are described in table \ref{table:model parameters}. $\Theta$ is the regular Heaviside function. These equations are written for the dynamics of a circular particle $i$. But involve other entities such as the wall and the nearest neighbors. Equations \eqref{eq:dynamics of position}-\eqref{eq:elastic force} are called Langevin equations due to their stochastic nature.
+All of the quantities used in these equations and on the model are described in table \ref{table:model parameters}. These equations are written for the dynamics of a circular particle $i$, involving other entities such as the wall and the nearest neighbors. Equations \eqref{eq:dynamics of position}--\eqref{eq:elastic force} belong to the class of Langevin equations due to their stochastic nature.
 
 % Tabla del modelo
 \begin{table}[!h]
    \centering
     \small
-    \caption[Summary of the quantities used in the simulations]{All of the quantities used for the model, with their description and values. For variables the value column will be empty and for parameters that take a range of values, that column will have a $-$ symbol and in chapter 4, results will have the value specified. }
+    \caption[Summary of the quantities used in the simulations]{Quantities used for the model, with their description and values if adequate.For parameters that take a range of values, that column will have a $-$ symbol and in Chapter 4, results will have that value specified. }
     \begin{tabularx}{\textwidth}{lXl}
     \hline\noalign{\smallskip}
          Variable  & Description & \quad   \\
@@ -156,13 +174,14 @@ All of the quantities used in these equations and on the model are described in 
          $d_{ij}$ & Distance between the cell $i$ and the neighbor $j$. & \quad \\
     \hline\noalign{\smallskip}
         Parameter  & Description & Value   \\
+    \noalign{\smallskip}\hline\noalign{\smallskip}
         $\rho$ & Density of cells. This density relates to number of particles seen in the focal plane. & \SI[per-mode = symbol]{3d-3}{\cells \per \square\micro\meter} \\
-        $u$ & Speed of swimming. & \SI[per-mode = symbol]{20}{\micro\meter\per\second} \\
-        $R$ & Radius of the cell. & \SI{0.5}{\micro\meter} \\
+        $u$ & Swimming speed. & \SI[per-mode = symbol]{20}{\micro\meter\per\second} \\
+        $R$ & Radius of the cells. & \SI{0.5}{\micro\meter} \\
          $K$ & Magnitude of the aligment with the wall. & - \\ 
          $D_r$ & Rotational diffusion coefficient. & - \\ 
-         $k_{wall}$ & Elastic constant for cell-wall collisions. & \SI[per-mode = symbol]{1d9}{\newton\per\meter} \\ 
-         $k_{cell}$ & Elastic constant for cell-cell collisions. & - \\
+         $k_{\text{wall}}$ & Elastic constant for cell-wall collisions. & \SI[per-mode = symbol]{1d3}{\micro\meter\per\second\per\meter}\\ 
+         $k_{\text{cell}}$ & Elastic constant for cell-cell collisions. & - \\
          $\Delta t$ & Time step for the integration of the equations. & \SI{d-3}{\second} \\
          $\Delta t_r$ & Time step for the recording of data. & \SI{d-1}{\second} \\
          $T$ & Time duration of the simulations. & \SI{200}{\second} \\
@@ -171,67 +190,86 @@ All of the quantities used in these equations and on the model are described in 
     \label{table:model parameters}
 \end{table}
 
-Quantities with the lower index $w$ depend on the wall. Simulations have a flat and a curved wall with amplitude $A$ and wavelength $\lambda$. The parametric definition of the walls positions are $y=y_f$ for the flat and $y=y_c+A\sin{\frac{2\pi x}{\lambda}}$ for the curved wall. The values of $y_f, y_c$ are so that the mean distance between walls is \SI{100}{\micro\meter}. Also, periodic boundary conditions will be applied, so to avoid problems with discontinuities in the wall, the x-axis length is scaled to have an exact number of wavelengths and be greater than \SI{300}{\micro\meter}. The total particle number is adjusted so that all simulations have the same density of particles $\rho$. These dimensions are similar to the experiments.
+Quantities with the lower index $w$ depend on the wall. Simulations have a flat and a curved wall with amplitude $A$ and wavelength $\lambda$. The parametric definition of the walls positions are $y=y_f$ for the flat and $y=y_c+A\sin{\frac{2\pi x}{\lambda}}$ for the curved wall. The values of $y_f, y_c$ are so that the mean distance between walls is \SI{100}{\micro\meter}. Also, periodic boundary conditions will be applied. To avoid problems with discontinuities in the wall, the length of the channel is adjusted to have an integer number of wavelengths and be greater than \SI{300}{\micro\meter}. The total particle number is adjusted so that all simulations have the same particle density $\rho$. These values are similar to the experiments.
 
 \subsection{Numerical integration}
 
 Typically, there are many options to solve a differential equation numerically. In this case, the equations are somewhat simple, so it is tempting to integrate \eqref{eq:dynamics of position} and \eqref{eq:dynamics of angle} with Euler's method. That integration method is a first-order method which means that during a step $\Delta t$ of integration, the integrands are taken as constants. Therefore we would obtain:
 
 \begin{align}
-    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t(u \textbf{p}_i(t) + \tilde{\textbf{F}}_c(t)), \\
+    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t[u \textbf{p}_i(t) + \textbf{F}^*_{\text{coll}}(t)], \\
     \label{eq:wrong integration}
-    \theta_i(t+\Delta t) &=  \theta_i(t) + \Delta t(K (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t)) + \sqrt{2D_r}\eta(t)).
+    \theta_i(t+\Delta t) &=  \theta_i(t) + \Delta t[- K (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t)) + \eta_i(t)].
 \end{align}
 
-Everything looks good, but there is a problem with the last term of equation \eqref{eq:wrong integration}. The problem relies on the timescale in which $\eta$ acts. Remember that $\eta$ represents the torque produced by collisions with the liquid molecules. These thermal fluctuations have a characteristic time between collisions of $\sim$\SI{1.9d-13}{\second} \cite{Soto2016KineticPhenomena}. That means we have two options, either we consider a minimal time step $\Delta t$ so the hypothesis that $\eta$ is constant in the interval is true, or we treat $\eta$ separately. The latter is the best option, as $\eta$'s timescale is much lower than all the others present in the system. The correct equations are:
+However, there is a problem with the last term of equation \eqref{eq:wrong integration}, which relies on the timescale in which $\eta$ acts. Remember that $\eta$ represents the torque produced by collisions with the liquid molecules. These thermal fluctuations have a characteristic time between collisions of $\sim$\SI{1.9d-13}{\second} \cite{Soto2016KineticPhenomena}. That means we have two options, either we consider a minimal time step $\Delta t$ so the hypothesis that $\eta$ is constant in the interval is true, or we treat $\eta$ separately. The latter is the best option, as $\eta$'s timescale is much smaller than all the others present in the system. The correct equations are:
 
 \begin{align}
-    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t(u \textbf{p}_i(t) + \tilde{\textbf{F}}_c(t)), \\
-    \theta_i(t+\Delta t) &=  \theta_i(t) + \Delta t(K (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t))) \nonumber \\
-     &\ \ \ + \sqrt{2D_r} \int_t^{t+\Delta t}\eta(t^\prime)dt^\prime .
+    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t[u \textbf{p}_i(t) + \textbf{F}^*_{\text{coll}}(t)], \\
+    \theta_i(t+\Delta t) &=  \theta_i(t) - K \Delta t  (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t)) \nonumber \\
+     &\ \ \ + \int_t^{t+\Delta t}\eta_i(t^\prime)dt^\prime .
 \end{align}
 
 
 Then a new problem arises, how do we calculate the integral of $\eta$. We can find the answer on stochastic calculus, and here we describe one of the possible demonstrations. First, we treat $\eta$ as what it is, a discrete function representing all the collisions with liquid molecules.
 
 \begin{equation}
-    \int_t^{t+\Delta t}\eta(t^\prime)dt^\prime = \sum_{n=1}^N \eta_n,
+    \int_t^{t+\Delta t}\eta(t^\prime)dt^\prime = \sum_{n=1}^N \phi\eta_n,
 \end{equation}
 
-where $\eta_n$ is proportional to the angle displacement produced in a certain collision $n$. The magnitude of these rotations is contained in $D_r$ so that we can treat them as standard Gaussians. As we stated, these collision displacements are also uncorrelated. Therefore, we can use that the distribution of the sum of two gaussian uncorrelated variables, $x\sim\mathcal{N}(\mu_x,\sigma_x^2)$ and $y\sim\mathcal{N}(\mu_y,\sigma_y^2)$, is given by $\mathcal{N}(\mu_x+\mu_y,\sigma_x^2+\sigma_y^2)$ and by induction obtain:
+where $\eta_n$ is proportional to the angle displacement produced in a certain collision $n$. The magnitude of these rotations is contained in $\phi$ so that we can treat them as standard normal Gaussians. As we stated, these collision displacements are also uncorrelated. Therefore, we can use that the distribution of the sum of two gaussian uncorrelated variables, $x\sim\mathcal{N}(\mu_x,\sigma_x^2)$ and $y\sim\mathcal{N}(\mu_y,\sigma_y^2)$, is given by $\mathcal{N}(\mu_x+\mu_y,\sigma_x^2+\sigma_y^2)$ and by induction obtain:
 
 \begin{equation}
     \sum_{n=1}^N \eta_n \sim \mathcal{N}(0,N) = \sqrt{N}\mathcal{N}(0,1),
 \end{equation}
 
-were the last equality is in the sense of probability density distribution. Then, the total number of collisions $N$ is proportional to $\Delta t$, for instance $N=\alpha \Delta t$, where $\alpha$ is a rate of collisions that in reality is contained on $D_r$ together with the magnitude of angle variations due to collisions. Then we can write:
+were the last equality is in the sense of probability density distribution. Then, the total number of collisions $N$ is proportional to $\Delta t$, for instance $N=\alpha \Delta t$, where $\alpha$ is a rate of collisions. Then we can write:
 
 \begin{align}
-    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t(u \textbf{p}_i(t) + \tilde{\textbf{F}}_c(t)), \\
+    \textbf{r}_i(t+\Delta t) &=  \textbf{r}_i(t) + \Delta t[u \textbf{p}_i(t) + \textbf{F}^*_{\text{coll}}(t)], \\
     \label{eq:correct integration}
-    \theta_i(t+\Delta t) &=  \theta_i(t) + \Delta t(K (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t))) \nonumber \\
-     &\ \ \ + \sqrt{2D_r\Delta t} \eta(t) .
+    \theta_i(t+\Delta t) &=  \theta_i(t) - K\Delta t (\textbf{p}_i(t) \cdot \hat{\textbf{t}}_w)  (\textbf{p}_i(t) \cdot \hat{\textbf{n}}_w) \Gamma(\textbf{r}_i(t), \textbf{p}_i(t)) \nonumber \\
+     &\ \ \ + \sqrt{\phi^2\alpha\Delta t} \eta(t).
 \end{align}
 
+Here $\phi$ is in \SI{}{\radian} and $\alpha$ in \SI{}{\per\second} so $\phi^2\alpha$ has units of \SI{}{\square\radian\per\second}, the same as the rotational diffusion coefficient. Therefore, we naturally obtained the diffusion coefficient, normally defined as $2D_r\equiv\phi^2 \alpha$. As already mentioned, for smooth swimmer \textit{E.coli} in liquids it has been measured that $D_r=$ \SI[per-mode = symbol]{0.057}{\square\radian \per \second}. Nevertheless we consider $D_r$ as a free parameter with values between $D_r=$ \SIrange[per-mode = symbol, range-units=single
+]{0.01}{0.05}{\square\radian \per \second} as is expected to be lower in our case, due to the constraints of the walls. Therefore $K$ and $D_r$ are the free parameters of the model.
+
 The result of equation \eqref{eq:correct integration} is really important for the consistency of the numerical integration, since the equation $\langle \eta(t)\eta(t^\prime)  \rangle &= \delta (t-t^\prime)$ implies that $\eta$ has units of \SI{}{\second^{-1/2}} so multiplying by $\Delta t$ instead of $\sqrt{\Delta t}$ is dimensionally wrong.
+
+
+\subsection{Intensity profiles in simulations}
+
+In experiments we construct intensity profiles using the intensity of bacteria fluorescence. In simulations there is no such thing, we can only measure bacteria positions $\textbf{r}_i$. Therefore, we have to measure the mean bacteria density $n(x)$. For each particle in the band of a wall we can assign a interval in the x-axis defined as $[x-\Delta x/2,x+\Delta x/2]$ where $x_i = \textbf{r}_i \cdot \hat{x} - x_{\text{valley}}$ is contained. Here $x_{\text{valley}}$ is the position of the nearest valley to the particle, meaning $x$ is on a interval of one wavelength $\lambda$. The resolution $\Delta x = $ \SI{0.32}{\micro\meter} is the same as in the experiments. Mean bacteria density $n(x)$ is just the count of bacteria that were in an interval defined by its center $x$. 
+
+Obviously $n(x)$ is not the same as intensity profiles. To create a comparable quantity, we convolve $n(x)$ with a Gaussian function $G(x)=\exp(-x^2/(2R))$. We call the result the intensity profile of the simulation:
+
+\begin{equation} \label{eq:Intensity profiles in simulations}
+    I(x) = n(x) * G(x)
+\end{equation}
+
+The amplitude of the Gaussian does not matter as we will normalize by the mean accumulation in the flat wall. This treatment means we consider particles having a Gaussian intensity in space. This is not equal to the intensities measured in experiments because bacteria are not spherical. Nevertheless, treating intensity not spherically in simulations would be incorrect, leading to inconsistencies.
 
 \subsection{Algorithm}
 
 The algorithm used in the simulations is described in the following steps.
 
 \begin{itemize}
-    \item[1.] Create a random initial condition for all the particles positions and swimming directions. Then start iterating the time steps.
+    \item[1.] Create a random initial condition for all the particles positions and swimming directions. If a particle is out of boundaries or in contact with a wall, its initial conditions are generated again. Then start iterating the time steps.
     \item[2.] Update the closest point of the wall for all particles close to the walls.
     \item[3.] Integrate the equation for $\theta_i$.
     \item[4.] Determine the $\mathbb{NN}$ set for all particles.
-    \item[5.] Calculate the force $\tilde{\textbf{F}}_c$.
+    \item[5.] Calculate the force $\textbf{F}^*_{\text{coll}}$.
     \item[6.] Integrate the equation for $\textbf{r}_i$.
     \item[7.] Every time interval $\Delta t_r$ record the relevant data. This avoids high time correlations between measurements.
     \item[8.] Stop when a time $T$ has passed.
 \end{itemize}
 
-For the step number 2, we calculate the closest point in the walls to the cell by dividing the interval $[x_i-R, x_i +R]$ in 300 points where $x_i = \textbf{r}_i \cdot \hat{x}$. Then, we calculate the distance between the position obtained with the parametric definition of the wall and the cell for each point. The point with the lowest distance is the closest with a precision of \SI{3d-3}{\micro\meter}. This "brute force" algorithm works because a point outside of the interval $[x_i-R, x_i +R]$ is not in contact with the cell and is convenient because the distance to the wall as a function of the x-axis has many local minimums. The algorithm was implemented in a c++ program with object oriented programming.\ Results are left for chapter 4.
+The algorithm was implemented in a c++ program with object oriented programming. In figure \ref{sim trajectories} we display trajectories for the parameters $K=$ \SI[per-mode = symbol]{5}{\radian\per\second}, $D_r=$ \SI[per-mode = symbol]{0.05}{\radian\per\second} and $k_{\text{cell}}=0$.
 
-\subsection{Intensity profiles in simulations}
-
-\textcolor{red}{Note: Add frames of simulations or trajectories}
+\begin{figure}
+	\centering
+	\includesvg[scale=1]{imagenes/sim_trajectories}
+	\caption[Example of trajectories for the simulations]{Example of trajectories  obtained with the simulations for the parameters $K=$ \SI[per-mode = symbol]{5}{\radian\per\second}, $D_r=$ \SI[per-mode = symbol]{0.05}{\square\radian\per\second} and $k_{\text{cell}}=$ \SI[per-mode = symbol]{0}{\micro\meter\per\second\per\meter}. The star represents the start of each track and the triangles the end of them. The values of $A$ and $\lambda$ are included on the top of the plot. Trajectories last for \SI{10}{\second}.}
+	\label{sim trajectories}
+\end{figure}

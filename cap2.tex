@@ -3,9 +3,9 @@
 \section{Experimental Protocols}
 \subsection{Bacteria culture}
 
-Experiments were done with the non-chemotactic, smooth swimmer strain of \textit{E.coli} JEK1038 (W3110 [lacZY::GFPmut2, cheY::frt], green) provided by prof. Juan Keymer. The strain was modified to express the green fluorescent protein GFPmut2, and its run-and-tumble dynamics were suppressed by cheY deletion \cite{VanVliet2014ThePopulations}. 
+Experiments were done with the non-chemotactic, smooth swimmer strain of \textit{E.coli} JEK1038 (W3110 [lacZY::GFPmut2, cheY::frt], green) provided by prof.\ Juan Keymer. The strain was modified to express the green fluorescent protein GFPmut2, and its run-and-tumble dynamics were suppressed by cheY deletion \cite{VanVliet2014ThePopulations}. 
 
-We put \SI{20}{\micro\liter} of bacteria stock at \SI{-20}{\degreeCelsius} (appendix?) in \SI{5}{\milli\liter} of Lysogeny Broth (LB) medium for approximately 24 hours in an incubator with a shaker at \SI{28}{\degreeCelsius} and \SI{180}{\rpm}. Then, \SI{30}{\micro\liter} of this overnight were diluted in \SI{3}{\milli\liter} of LB medium with \SI{3}{\milli\molar} isopropyl $\beta$-D-1-thiogalactopyranoside (IPTG Sigma-Aldrich) and grown until the optical density at \SI{600}{\nano\meter} (\SI{}{\OD}) reaches $0.5\pm0.05$. Afterward, we added $0.1\%$ bovine serum albumin to avoid cell-to-cell adhesion and centrifuge the culture for $15$ minutes at \SI{4600}{\rpm} or $2600$ relative centrifugal force (rcf), leaving a bacteria pellet at the bottom of the falcon tube. We resuspended the pellet in \SI{3}{\milli\liter} of MMA (appendix?), resulting in a mixture with an \SI{}{\OD} slightly lower than $0.5$. To reach a low-density, we again diluted until \SI{5d-4}{\OD} is reached or approximately \SI[per-mode = symbol]{4d6}{\cells\per\milli\liter}. It is important to mention that \SI{}{\OD} is insufficient to determine final density at our experiments since bacteria will not enter the channel evenly every time because they move through the walls. We assume that these density variations are sufficiently small not to affect the dynamics of each regime.
+We put \SI{20}{\micro\liter} of bacteria stock at \SI{-20}{\degreeCelsius} (appendix?) in \SI{5}{\milli\liter} of Lysogeny Broth (LB) medium for approximately 24 hours in an incubator with a shaker at \SI{28}{\degreeCelsius} and \SI{180}{\rpm}. Then, \SI{30}{\micro\liter} of this overnight were diluted in \SI{3}{\milli\liter} of LB medium with \SI{3}{\milli\molar} isopropyl $\beta$-D-1-thiogalactopyranoside (IPTG Sigma-Aldrich) and grown until the optical density at \SI{600}{\nano\meter} (\SI{}{\OD}) reaches $0.5\pm0.05$. Afterward, we added $0.1\%$ bovine serum albumin to avoid cell-to-cell adhesion and centrifuge the culture for $15$ minutes at \SI{4600}{\rpm} or $2600$ relative centrifugal force (rcf), leaving a bacteria pellet at the bottom of the falcon tube. We resuspended the pellet in \SI{3}{\milli\liter} of MMA (appendix?), resulting in a mixture with an \SI{}{\OD} slightly lower than $0.5$. To reach a low-density, we again diluted until \SI{5d-4}{\OD} is reached or approximately \SI[per-mode = symbol]{4d6}{\cells\per\milli\liter}. It is important to mention that \SI{}{\OD} is insufficient to determine the final density in our experiments since bacteria will not enter the channel evenly every time because they move through the walls. We assume that these density variations are sufficiently small not to affect the dynamics of each regime.
 
 \subsection{Fabrication of microfluidic devices}
 
@@ -16,16 +16,16 @@ We fabricated the microfluidic devices used in the experiments with conventional
 \begin{figure}[H]
 	\centering
 	\includesvg[scale=1]{imagenes/channel diagrams}
-	\caption[Microfluidic device diagram]{a) Diagram of the 3D perspective of the channel for different dimensions, not scaled. The frontal side of this sketch will face towards the microscope slide after forming the PDMS-PDMS bond. The curved wall has a sinusoidal form with one amplitude $A$ and different wavelengths $\lambda$. There are four different channels with amplitudes $A=$ \SIlist[list-units=single, list-final-separator = {, }]{3;6;9;12}{\micro\meter} and each is divided into four sections with wavelengths $\lambda=$ \SIlist[list-units=single, list-final-separator = {, }]{21;24;27;30}{\micro\meter} allowing to study in a range of curvatures.  b) diagram of the empty microfluidic device. The red line is the channel where all the experiments are performed. c) diagram of the microfluidic device when bacteria suspension is added. The bacteria suspension, represented as green, fulfills both pools and the channel.}
+	\caption[Microfluidic device diagram]{a) Diagram of the 3D perspective of the channel for one amplitude $A$ and different wavelength $\lambda$, not at scale. The frontal side of this sketch will face towards the microscope slide after forming the PDMS-PDMS bonds. For each channel, the curved wall has a sinusoidal form with one amplitude $A$ and different wavelengths $\lambda$. There are four different channels with amplitudes $A=$ \SIlist[list-units=single, list-final-separator = {, }]{3;6;9;12}{\micro\meter} and each one is divided into four sections with wavelengths $\lambda=$ \SIlist[list-units=single, list-final-separator = {, }]{21;24;27;30}{\micro\meter} allowing to study in a range of curvatures.  b) Diagram of the empty microfluidic device. The red line is the channel where all the experiments are performed. c) Diagram of the microfluidic device when the bacteria suspension is added. The bacteria suspension, represented as green, fills both pools and the channel.}
 	\label{channel_diagram}
 \end{figure}
 }
 
-We prepare a PDMS mixture of Sylgard 184 elastomer base and curing agent in a 10:1 mass ratio. It is essential to mix for many seconds to ensure the PDMS is homogenous. If the mixing is not enough, some parts of the PDMS might not separate from the mold and cause irregularities on the channel. Then, the mixture should be centrifuged for 10 minutes at 5000 rpm to degas it. To ensure there is no air after pouring the mixture on the mold, it is necessary to put the mold in a vacuum chamber. The remaining bubbles will expand and merge, so they pop more easily. Finally, the mold is left in an oven at \SI{65}{\degreeCelsius} for at least $1$ hour. If the air bubbles were not removed, they expand during the heating process and could ruin the shape of the channel. After removing each channel from the mold, we made two entrance pools with a \SI{4}{\milli\meter} tissue punch for each channel.
+We prepare a PDMS mixture of Sylgard 184 elastomer base and curing agent in a 10:1 mass ratio. It is essential to mix for several seconds to ensure the PDMS is homogenous. If the mixing is not enough, some parts of the PDMS might not separate from the mold and cause irregularities on the channel. Then, the mixture should be centrifuged for 10 minutes at 5000 rpm to degas it. To ensure there is no air after pouring the mixture on the mold, it is necessary to put the mold in a vacuum chamber. The remaining bubbles will expand and merge, so they pop more easily. Finally, the mold is left in an oven at \SI{65}{\degreeCelsius} for at least $1$ hour. If the air bubbles were not removed, they would expand during the heating process and could ruin the shape of the channel. After removing each channel from the mold, we made two entrance pools with a \SI{4}{\milli\meter} tissue punch for each channel.
 
-We also considered that the channel must have all four walls of PDMS to avoid different mechanical or chemical properties on the walls. To do so, we cover a microscope slide with a thin layer of $\sim0.4g$ of PDMS, spread with a plastic spatula. The slide is left overnight on top of a leveled surface, so PDMS uniformly distributes, then put into the oven. Using a plasma cleaner, it is possible to bond the channel with the slide \cite{Henry2015ScholarlyCommonsProtocol-Technics}. We set the RF level to max power and exposed the PDMS block with the microchannel and the PDMS-covered glass to air plasma for 1 minute. PDMS is comprised of repeated units of -O-Si(CH$_3$)$_2$. The exposure to an oxygen plasma will form silanol groups Si-OH, so when a similar surface is brought into contact, the covalent Si-O-Si bonds are created, displacing a water molecule \cite{Koh2012QuantitativeEffect}. Finally, plasma oxidation will make the channel surface hydrophilic. The final assembly is shown in the figure \ref{channel_diagram} b).
+We also considered that the channel must have the four walls made of PDMS to avoid different mechanical or chemical properties on the walls. To do so, we cover a microscope slide with a thin layer of $\sim$ \SI{0.4}{\gram} of PDMS, spread with a plastic spatula. The slide is left overnight on top of a leveled surface, so PDMS uniformly distributes, and then it is put into the oven. Using a plasma cleaner, it is possible to bond the channel with the slide \cite{Henry2015ScholarlyCommonsProtocol-Technics}. We set the RF level to max power and exposed the PDMS block with the microchannel and the PDMS-covered glass to air plasma for 1 minute. PDMS is comprised of repeated units of -O-Si(CH$_3$)$_2$. The exposure to an oxygen plasma will form silanol groups Si-OH, so when a similar surface is brought into contact, the covalent Si-O-Si bonds are created, displacing a water molecule \cite{Koh2012QuantitativeEffect}. Finally, plasma oxidation will make the channel surface hydrophilic. The final assembly is shown in the figure \ref{channel_diagram} b).
 
-The channels are \SI{100}{\micro\meter} height and \SI{25}{\micro\meter} deep and have three flat walls and one curved in a sinusoidal form. The channel is divided in several sections with different combinations of amplitude $A$ and wavelength $\lambda$. Figure \ref{channel_diagram} a) shows a diagram of the channel. The nominal values of the amplitudes are  $A=$ \SIlist[list-units=single, list-final-separator = {, }]{3;6;9;12}{\micro\meter} and the wavelengths $\lambda=$ \SIlist[list-units=single, list-final-separator = {, }]{21;24;27;30}{\micro\meter}. The real values of these dimensions were measured for every channel section, differing at most on \SI{1}{\micro\meter} from their nominal values. The measured dimensions will be used to characterize channels. 
+The channels are \SI{100}{\micro\meter} width and \SI{25}{\micro\meter} deep and have three flat walls and one curved in a sinusoidal form. The channel is divided in several sections with different combinations of amplitudes $A$ and wavelengths $\lambda$. Figure \ref{channel_diagram} a) shows a diagram of the channel. The nominal values of the amplitudes are  $A=$ \SIlist[list-units=single, list-final-separator = {, }]{3;6;9;12}{\micro\meter} and the wavelengths $\lambda=$ \SIlist[list-units=single, list-final-separator = {, }]{21;24;27;30}{\micro\meter}. The real values of these dimensions were measured for every channel section, differing from their nominal values mostly on the amplitude $A\sim$ \SI{12}{\micro\meter} where the differences are up to \SI{2}{\micro\meter}. The measured dimensions will be used to characterize channels. 
 
 
 \subsection{Experimental setup}
@@ -33,21 +33,21 @@ The channels are \SI{100}{\micro\meter} height and \SI{25}{\micro\meter} deep an
 \begin{wrapfigure}{r}{0.5\linewidth}
 \centering
 \includesvg[width=\linewidth]{imagenes/focal plane}
-\caption[Focal plane diagram]{Diagram of the focal plane. The width of the focal plane is \SI{2}{\micro\meter} so the depth of the channel does not matter in the observed dynamics. }
+\caption[Focal plane diagram]{Diagram of the focal plane. The depth of the focal plane is \SI{2}{\micro\meter} so the depth of the channel does not matter in the observed dynamics. }
 \label{focal_plane}
 \end{wrapfigure}
 
-Since \textit{E.coli} cell membrane is negatively charged, adsorption of cells to walls might occur. We coated the channel walls with $0.1\%$ BSA solution dissolved in MMA to prevent it. BSA also has negative charges so that it will act as a blocking protein. Then, we add bacteria and seal the access holes with a glass coverslip preventing external flows in the experiment as shown in figure \ref{channel_diagram} c). We used an inverted microscope (Nikon TS100F) with a 40x/0.6 NA Plan Fluor objective to measure bacteria fluorescence and recorded it with a camera (Andor Zyla 2048 × 2048 \SI{}{\square\pixels}) at 10 fps, gain $4$, and 2x2 binning giving a resolution of \SI[per-mode = symbol]{0.32}{\micro\meter\per\pixels}. Since the PDMS thickness may vary, adjusting the correction ring of the objective to the appropriate dimensions is necessary. The focal plane will be on the edge of the channel, whose depth is approximately \SI{2}{\micro\meter}. Therefore we assume that the depth of the channel will not affect the observed dynamics.
+Since \textit{E.coli} cell membrane is negatively charged, adsorption of cells to walls might occur. We coated the channel walls with $0.1\%$ BSA solution dissolved in MMA to prevent it. BSA also has negative charges so that it will act as a blocking protein. Then, we add bacteria and seal the access holes with a glass coverslip preventing external flows in the experiment, as shown in figure \ref{channel_diagram} c). We used an inverted microscope (Nikon TS100F) with a 40x/0.6 NA Plan Fluor objective to measure bacteria fluorescence and recorded it with a camera (Andor Zyla 2048 × 2048 \SI{}{\square\pixels}) at 10 fps, gain $4$, and 2x2 binning giving a resolution of \SI[per-mode = symbol]{0.32}{\micro\meter\per\pixels}. Since the PDMS thickness may vary, adjusting the correction ring of the objective to the appropriate dimensions is necessary. The focal plane will be on the edge of the channel, whose depth is approximately \SI{2}{\micro\meter}. Therefore we assume that the depth of the channel will not affect the observed dynamics.
 
 \section{Image analysis}
 
 
-This section describes how we analyzed the videos obtained from the experiments. Videos can be seen as just a 3-axis matrix with values $v_{ij}^t$ where $i,j$ are the pixel position indices and $t$ represents the frame number. The magnitude of $v_{ij}^t$ is the intensity of that pixel. The measured intensities consist of two sources, camera noise $n_{ij}^t$ and bacteria fluorescence $b_{ij}^t$. Our goal is to use $b_{ij}^t$ to measure different properties of the system. In figure \ref{video_histogram} it is possible to see a typical frame and histogram for the intensities $v_{ij}^t$.
+This section describes how we analyzed the videos obtained from the experiments. Videos can be seen just as a 3-axis matrix with values $v_{ij}^t$ where $i,j$ are the pixel position indices and $t$ represents the frame number. The magnitude of $v_{ij}^t$ is the intensity of that pixel. The measured intensities consist of two sources, camera noise $n_{ij}^t$ and bacteria fluorescence $b_{ij}^t$. Our goal is to use $b_{ij}^t$ to measure different properties of the system. In figure \ref{video_histogram} it is possible to see a typical frame and histogram for the intensities $v_{ij}^t$.
 
 \begin{figure}
 	\centering
 	\includesvg[scale=1]{imagenes/typical_video_frame}
-	\caption[Typical video frame]{a) Example of one frame in a video and b) intensity histogram of the entire video. The video is saved in a 12-bit format so $v$ can take values from $0$ to $4096$ }
+	\caption[Typical video frame]{a) Example of one frame in a video and b) intensity histogram of the entire video. The video is saved in a 12-bit format so the intensities for each pixel $v$ can take values from $0$ to $4096$. }
 	\label{video_histogram}
 \end{figure}
 
@@ -60,54 +60,55 @@ Masks are binarized images that determine the region of interest (ROI) for the e
 \begin{figure}
 	\centering
 	\includesvg[scale=1]{imagenes/mask_example}
-	\caption[Mask example]{a) Max pixel intensity image, created directly from the video. b) histogram of the max pixel intensity image $W$. The first peak of the histogram is associated with the noise distribution $n_{ij}^t$ and the second with $b_{ij}^t$. c) Binary mask derived from the max intensity image and d) the rotated, so the flat wall is horizontal. }
+	\caption[Mask example]{a) Max pixel intensity image, created directly from the video. b) Histogram of the max pixel intensity image $W$. The first peak of the histogram is associated with the noise distribution $n_{ij}^t$ and the second with $b_{ij}^t$. c) Binary mask derived from the max intensity image and d) the rotated mask, so the flat wall is horizontal. }
 	\label{mask}
 \end{figure}
 }
 
 The mask serves two primary purposes. The first one is to determine the actual dimensions of the channel. We manually enter the position of the peaks and valleys to the program. The amplitude $A$ is half of the mean vertical distance between a peak and a valley from the input locations, while the wavelength $\lambda$ is the horizontal separation between two consecutive peaks or valleys. The input has subpixel precision, so errors are only associated with mouse movement. Errors are not systematic because they are added randomly, so the method gives reasonable measures.  An automatic version will introduce many problems, as the border of the mask is not smooth, making many criteria not robust. 
 
-The second purpose is to define the boundary of the experiment. We define the surfaces $B_{c},B_{f}$ to be \SI{4}{\micro\meter} thick from each wall into the bulk system. We call these surfaces the bands around the curved and flat walls, respectively.  Bands are used to measure the density near walls and decide if a bacterium is in contact with the wall.  In figure \ref{bands} there is an example showing both bands. The height of the bands was chosen to ensure that particles swimming in contact with the wall are entirely inside the band region. In some cases, bacteria will be swimming barely not in contact with the wall but still inside the band region. These cases are considered marginal since most of them will reach the wall one or two frames after.
+The second purpose is to define the boundary of the experiment. We define the surfaces $B_{c},B_{f}$ the bands around the curved and flat walls respectively, to be \SI{4}{\micro\meter} thick from each wall into the bulk system. Bands are used to measure the density near walls and decide if a bacterium is in contact with the wall.  In figure \ref{bands} there is an example showing both bands. The width of the bands was chosen to ensure that particles swimming in contact with the wall are entirely inside the band region. In some cases, bacteria will be swimming barely not in contact with the wall but still inside the band region. These cases are considered marginal since most of them will reach the wall one or two frames later.
 
 \begin{wrapfigure}{r}{0.5\linewidth}
 \centering
 \includegraphics[width=\linewidth,angle=0]{imagenes/bandas22.10.21_A=3_L=21.png}
-\caption[Bands example]{Image of a band for the same mask shown in figure \ref{mask} c).}
+\caption[Bands example]{Image of the bands for the same mask shown in figure \ref{mask} c).}
 \label{bands}
 \end{wrapfigure}
 
+\newpage
+
 \subsection{Noise treatment}
 
-As we said, the intensity values are given by $v_{ij}^t  = n_{ij}^t +  b_{ij}^t$. We are only interested in $b_{ij}^t$, and therefore, we want to minimize the effects of the noise. One important thing to consider is that the mean noise intensity is not the same for every pixel. In other words, the probability density function of noise intensity depends on space. There are two main reasons for this inhomogeneity. First, there are different noise levels at the PDMS and the MMA because out of focus bacteria contribute to the noise, and we can see in figure \ref{noise_img} a) and b) that the noise is higher on the liquid. Second, there is inhomogeneous illumination because we close the diaphragm to decrease noise intensity, only allowing light in the ROI to enter the camera, but the effect is more intense on the edges of the image. This effect is often less important than the first.
+As we said, the intensity values are given by $v_{ij}^t  = n_{ij}^t +  b_{ij}^t$. We are only interested in $b_{ij}^t$, and therefore, we want to minimize the effects of the noise. One important thing to consider is that the mean noise intensity is not the same for every pixel. In other words, the probability density function of noise intensities depends on space. There are two main reasons for this inhomogeneity. First, there are different noise levels at the PDMS and the MMA because out of focus bacteria contribute to the noise, and we can see in figure \ref{noise_img} a) and b) that the noise is higher on the liquid. Second, the illumination is inhomogeneous because we close the diaphragm to decrease noise intensity, only allowing light in the ROI to enter the camera, but the effect is more intense on the edges of the image. This effect is often less important than the first.
 
-To deal with the dependence on space of $n_{ij}^t$, we exploit many properties of the data. We first approximate the noise distribution by just calculating the mean intensity of  $\bar{v} = \langle v_{ij}^t \rangle_{ijt}$ where the average is over space and time, as the lower indices indicate. Since for most pixels, the bacteria intensity $b_{ij}^t=0$ as bacteria occupy a small fraction of the ROI, $\bar{v}$ is slightly greater than the mean of $n_{ij}^t$ for different pixels. Now, we assume that every pixel satisfying $v_{ij}^t  < \bar{v} + 3 \sigma$ where $\sigma$ is the standard deviation of $v_{ij}^t$ do not include bacteria fluorescence, i.e. $b_{ij}^t =0$. The $v_{ij}^t$ values that satisfy the previous inequality are renamed as $V_{ij}^t$. The histogram of $V_{ij}^t$ is shown in figure \ref{noise_img} c). Then, we are only interested in the region with MMA and bacteria, so we estimate the mean of the noise in that region:
+To deal with the dependence on space of $n_{ij}^t$, we exploit many properties of the data. We first approximate the noise distribution by just calculating the mean intensity of  $\bar{v} = \langle v_{ij}^t \rangle_{ijt}$ where the average is over space and time, as the lower indices indicate. Since for most pixels, the bacteria intensity $b_{ij}^t=0$ as bacteria occupy a small fraction of the ROI, $\bar{v}$ is slightly greater than the mean of $n_{ij}^t$ for different pixels. Now, we assume that every pixel satisfying $v_{ij}^t  < \bar{v} + 3 \sigma$ where $\sigma$ is the standard deviation of $v_{ij}^t$ do not include bacteria fluorescence, i.e. $b_{ij}^t =0$. The $v_{ij}^t$ values that satisfy the previous inequality are renamed as $N_{ij}^t$ because they represent an approximation of the noise. The histogram of $N_{ij}^t$ is shown in figure \ref{noise_img} c). Then, we are only interested in the region with MMA and bacteria, so we estimate the mean of the noise in that region:
 
 \begin{equation} \label{eq:noise_aproximation}
-	\langle n_{ij}^t \rangle_{ijt} \approx {\rm mean_{ROI}}(V_{ij}^t).
+	n_{est} \equiv {\rm mean_{ROI}}(N_{ij}^t).
 \end{equation}
 
 \afterpage{%
 \begin{figure}[H]
 	\centering
 	\includesvg[scale=1]{imagenes/noise_example}
-	\caption[Mean noise example]{ a) Mean noise image obtained averaging over time $V_{ij}^t$. The experiment displayed is one where this effect is clearly seen and is different from previous figures b) Histogram of $V_{ij}^t$ over two $20 \times 500$ \SI{}{\square\pixels} windows, one in PDMS and the other on MMA. The noise distribution on MMA is shifted to the right compared with the one on PDMS. Also, the difference is greater toward higher values, probably due to the influence of bacteria out of the focal plane. c) Histogram of $V_{ij}^t$ only for pixels in the ROI. The ${\rm mean_{ROI}}$ function calculates the mean over this distribution. d) Histogram of $B_{ij}^t$, the video that is used for future measurements. The segmented black line is on $B=0$.  }
+	\caption[Mean noise example]{ a) Mean noise image obtained averaging over time $V_{ij}^t$. The experiment displayed is one where the noise inhomogenities are clearly seen. b) Histogram of $V_{ij}^t$ over two $20 \times 500$ \SI{}{\square\pixels} windows, one in PDMS and the other on MMA. The noise distribution on MMA is shifted to the right compared with the one on PDMS. Also, the difference is greater toward higher values, probably due to the influence of bacteria out of the focal plane. c) Histogram of $V_{ij}^t$ only for pixels in the ROI. The ${\rm mean_{ROI}}$ function calculates the mean over this distribution. d) Histogram of $B_{ij}^t$, the video that is used for future measurements. The dashed black line is on $B=0$.  }
 	\label{noise_img}
 \end{figure}
 }
 
-Here the ${\rm mean_{ROI}}$ function represents the mean of the values of $V_{ij}^t$ for pixels in any frame but inside the ROI defined by the mask. The resulting $\langle n_{ij}^t \rangle_t$ is then substracted to the video so now the intensities on the video are given by $B_{ij}^t  = b_{ij}^t + N_{ij}^t$, where $N_{ij}^t  = n_{ij}^t - {\rm mean_{ROI}}(V_{ij}^t)$. We affirm that any average in time and space of $B_{ij}^t$ will be for all effects equal to one done over only $b_{ij}^t$ since the matrix $N_{ij}^t $ averages 0 in the ROI. 
-
+Here the ${\rm mean_{ROI}}$ function represents the mean of the values of $N_{ij}^t$ for pixels in any frame but inside the ROI defined by the mask. The resulting $n_{est}$ is then substracted to the video so now the intensities on the video are given by $B_{ij}^t  = b_{ij}^t + \tilde{n}_{ij}^t$, where $\tilde{n}_{ij}^t  = n_{ij}^t - {\rm mean_{ROI}}(n_{ij}^t)$. The matrix $\tilde{n}_{ij}^t$ averages 0 in the ROI, therefore averages of $B_{ij}^t$ in time and space will only consider bacteria intensity.
 
 
 \subsection{Intensity analysis}
 
-The properties of the $B_{ij}^t$ matrix give the possibility to measure mean bacteria intensity over time and space identically as measured with $ b_{ij}^t$. We are interested in how bacteria behave in the bands of each wall and how both walls compare. To do so, we consider $M_{ij} = \langle B_{ij}^t \rangle_t $. The image $M_{ij}$ is called the mean image of the experiment and is an indicator of where bacteria swam through. An example of $M_{ij}$ is shown in figure \ref{mean_image_and_profile} a). Then we consider the intensity near a wall $i_i$ as:
+The properties of the $B_{ij}^t$ matrix give the possibility to measure mean bacteria intensity over time and space identically as measured with $ b_{ij}^t$. We are interested in how bacteria behave in the bands of each wall and how both walls compare. To do so, we consider $M_{ij} = \langle B_{ij}^t \rangle_t $. The image $M_{ij}$ is called the mean image of the experiment and is an indicator of where bacteria swam through. An example of $M_{ij}$ is shown in figure \ref{mean_image_and_profile} a). Then we consider the intensity near a wall $i_i^y$ as:
 
 \begin{equation}
 	i_i^y = \sum_{j \in B_y} M_{ij},
 \end{equation}
 
-where $B_y$ is the band of a specific wall $y$, then the definition of $i_i^y$ is the vertical sum of $M_{ij}$ over the band $B_y$. We normalize the intensity profiles by the mean of the flat wall intensity profile $\bar{i}^f = \langle  i_i^f\rangle_i $. 
+where $B_y$ is the band of a specific wall $y$. Then the definition of $i_i^y$ is the vertical sum of $M_{ij}$ over the band $B_y$. We normalize the intensity profiles by the mean of the flat wall intensity profile $\bar{i}^f = \langle  i_i^f\rangle_i $. 
 
 \begin{equation}  
 	\tilde{i}_i^y = \frac{i_i^y}{\bar{i}^f}.
@@ -131,22 +132,11 @@ It is essential to clarify that the coordinate $x$ only takes values among one w
 	\label{mean_image_and_profile}
 \end{figure}
 
+\newpage
+
 \subsection{Bacteria tracking}
 
-Tracking, in general, refers to determining the trajectories of objects in an image sequence. There are two main steps when doing the tracking: object detection and track creation. In the subsection, we will describe two different methods for doing detection and the tracking method based on linear assignment problems (LAP tracker). These methods are the ones that gave the most success during this MSc thesis, but other options were studied. All of the methods that will be discussed are already implemented on Trackmate, an open-source plugin for Fiji \cite{Tinevez2017TrackMate:Tracking}. 
-
-
-We start by describing object detection. The specific objective is to determine bacteria position via the intensity $B_{ij}^t$. Then, a detection algorithm should be able to measure intensity variations indicative of the presence of bacteria. One possibility is to use the Laplacian of Gaussian detector (LoG) \cite{Kong2013AApplications,Sage2005AutomaticDynamics}. This method is easier to understand if the matrix $B_{ij}^t$ is thought of as a scalar field $B(x,y,t)$. We only know some field values, but we can calculate integrals and derivatives using standard numerical methods. As the detector's name indicates, we first convolve with a Gaussian and then calculate the Laplacian of the result. The equations for the method are:  
-
-\begin{align}
-	G(x,y;\sigma) &= \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(  -\frac{x^2+y^2}{2\sigma^2} \right), \\
-	B^{gb}(x,y,t;\sigma) &= B(x,y,t) * G(x,y;\sigma), \\
-	R(x,y,t;\sigma)  &= \nabla^2 B^{gb}(x,y,t;\sigma). \label{LoG:result}
-\end{align}
-
-Here $G(x,y;\sigma)$ is a Gaussian kernel that, when convolved ($*$ operation) with the image, produces a polished version $B^{gb}(x,y,t;\sigma)$ where $gb$ stands for gaussian-blurred. The reason for this smoothing effect of this convolution is that it acts as a low-pass filter for the field \cite{WaltzaAnMachines}, removing highly space-dependent noise contributions. This smoothing is useful because, in tracking, we do not average B spatially or temporally. The value of $\sigma$ is $r/\sqrt{2}$ where $r$ is the estimate bacteria radius. More importantly, in equation \ref{LoG:result} the Laplacian operator $\nabla^2$ is applied to obtain $R(x,y,t;\sigma)$. The result is that bacteria with maximum intensity in the center will also have a minimum negative laplacian there, so local minima in $R(x,y,t;\sigma)$ are bacteria centers. Locality, in this case, refers to a circle of the estimated radius $r$, so the method detects bacteria as blobs of that size. There are more generalized versions of LoG that allow the consideration of non-circular particles \cite{Kong2013AApplications}. This method is ideal for images with noise and particles with a maximum intensity at their center and decaying at a radius $r$, but it only detects circumferences, so it should not be used if it is necessary to know the exact shape of the particles.
-
-\begin{wrapfigure}{l}{0.5\linewidth}
+\begin{wrapfigure}{r}{0.5\linewidth}
 \centering
 \includegraphics[width=\linewidth,angle=0]{imagenes/track_video_frame.PNG}
 \caption[Tracking video frame]{Example of a typical frame for the binarized matrix $T_{ij}^t$.}
@@ -154,12 +144,25 @@ Here $G(x,y;\sigma)$ is a Gaussian kernel that, when convolved ($*$ operation) w
 \end{wrapfigure}
 
 
+Tracking, in general, refers to determining the trajectories of objects in an image sequence. There are two main steps when doing the tracking: object detection and track creation. In the subsection, we will describe two different methods for doing detection and the tracking method based on linear assignment problems (LAP tracker). These methods are the ones that were the most succesful during this MSc thesis, but other options were studied as well. All of the methods that will be discussed are already implemented on Trackmate, an open-source plugin for Fiji \cite{Tinevez2017TrackMate:Tracking}. 
+
+
+We start by describing object detection. The specific objective is to determine bacteria position via the intensity $B_{ij}^t$. Then, a detection algorithm should be able to measure intensity variations indicative of the presence of bacteria. One possibility is to use the Laplacian of Gaussian detector (LoG) \cite{Kong2013AApplications,Sage2005AutomaticDynamics}. This method is easier to understand if the matrix $B_{ij}^t$ is thought of as a scalar field $B(x,y,t)$. We only know the field values at a regular grid of point, but we can calculate integrals and derivatives using standard numerical methods. As the detector's name indicates, we first convolve with a Gaussian and then calculate the Laplacian of the result. The equations for the method are:  
+
+\begin{align}
+	G(x,y;\sigma) &= \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(  -\frac{x^2+y^2}{2\sigma^2} \right), \\
+	B^{gb}(x,y,t;\sigma) &= B(x,y,t) * G(x,y;\sigma), \\
+	R(x,y,t;\sigma)  &= \nabla^2 B^{gb}(x,y,t;\sigma). \label{LoG:result}
+\end{align}
+
+Here $G(x,y;\sigma)$ is a Gaussian kernel that, when convolved ($*$ operation) with the image, produces a polished version $B^{gb}(x,y,t;\sigma)$ where $gb$ stands for gaussian-blurred. The reason for this smoothing effect of this convolution is that it acts as a low-pass filter for the field \cite{WaltzaAnMachines}, removing highly space-dependent noise contributions. The value of $\sigma$ is $r/\sqrt{2}$ where $r$ is the estimated bacteria radius. More importantly, in equation \ref{LoG:result} the Laplacian operator $\nabla^2$ is applied to obtain $R(x,y,t;\sigma)$. The result is that bacteria with maximum intensity in the center will also have a minimum negative Laplacian there, so local minima in $R(x,y,t;\sigma)$ are bacteria centers. Locality, in this case, refers to a circle of the estimated radius $r$, so the method detects bacteria as blobs of that size. There are more generalized versions of LoG that allow the consideration of non-circular particles \cite{Kong2013AApplications}. This method is ideal for images with noise and particles with a maximum intensity at their center and decaying at a radius $r$, but it only detects circumferences, so it should not be used if it is necessary to know the exact shape of the particles.
+
 Another possibility to consider is binarizing the videos. A binarized image will have sharp variations of intensity, and if done correctly, will not lose bacteria in the process. In our case, we again use Otsu's binarization method into the matrix $B_{ij}^t$. The result is then used for the tracking, so we call it $T_{ij}^t$. An example of a typical frame of this tracking video is shown in figure \ref{tracking_video_frame}. Bacteria detection in  $T_{ij}^t$ is straightforward because considering all connected regions as a particle is enough. This detection method is known as the thresholding detector. One possible issue is that there is only one detection when multiple cells collide. In figure \ref{detection_method_comparison} there is a comparison with results for the two methods. The LoG detector works well with noise, which does not mean that it will fail with a binarized image. Proper binarization often helps with any detection method. Conversely, the thresholding detector adapts to bacteria form and does not make fake detections. This last point convinced us to use a thresholding detector for these experiments.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{imagenes/detection_method_comparison.png}
-	\caption[Detection method comparison]{ Zoom image of a video $T_{ij}^t$, and bacteria detection results displayed in green for a) LoG detector and b) Thresholding detector. LoG detector adds virtual detections in large bacteria, but the thresholding method will account for multiple bacteria collisions as only one particle. Methods give comparable results, but the best choice will depend on experiment properties. In our case, Otsu's binarization method has the conditions to perform the algorithm successfully, so the overall thresholding detector has better results than the LoG detector. }
+	\caption[Detection method comparison]{ Zoom image of a video $T_{ij}^t$, and bacteria detection results displayed in green for a) LoG detector and b) Thresholding detector. LoG detector adds virtual detections in large bacteria, but the thresholding method will account for multiple bacteria collisions as only one particle. Methods give comparable results, but the best choice will depend on experimental properties, such as bacteria shape and frequency of collisions. In our case, Otsu's binarization method has the conditions to perform the algorithm successfully, so the overall thresholding detector has better results than the LoG detector. }
 	\label{detection_method_comparison}
 \end{figure}
 
@@ -169,7 +172,7 @@ Now we deepen into the automatic tracking method described in Trackmate's user m
   A = {\rm argmin} \left(  \sum_{k,l} A_{kl}C_{kl} \right),
 \end{equation}
 
-where $C_{kl}$ is a cost matrix and $A_{kl}$ is a boolean matrix of 1 (link) and 0 (no-link) with the restriction that there is only one link for each row or column. To understand how this problem is used for tracking is only needed to inspect the cost matrix $C$. The simpler form of $C$ is to consider connections between detections of two frames $t$ and $t+1$. These frames will have $n$ and $m$ detections, respectively. Then $C$ is an $(n+m) \times (n+m)$ with four quadrants. 
+where $C_{kl}$ is a cost matrix and $A_{kl}$ is a boolean matrix of 1 (link) and 0 (no-link) with the restriction that there is only one link for each row or column. To understand how this problem is used for tracking we need to inspect the cost matrix $C$. The simpler form of $C$ is to consider connections between detections of two frames $t$ and $t+1$. These frames will have $n$ and $m$ detections, respectively. Then $C$ is an $(n+m) \times (n+m)$ with four quadrants. 
 
 \begin{itemize}
 	\item The top left quadrant of size $n \times m$ has the cost of linking a detection on frame $t$ to one in $t+1$. The cost is $C_{kl} = (D_{kl}P_{kl})^2$ where $D_{kl}$ is the distance between the detections and $P_{kl} = 1 + \sum_f p_{kl}^f$ where $p_{kl}^f$ is a penalization for differences on the particle feature $f$ given by $p_{kl}^f = W_f \frac{|f_k - f_l|}{f_k + f_l}$, where $f_k$ is the value of the feature $f$ for particle $k$. Features that are useful with the thresholding detector are bacteria perimeter and area. The usage of penalization by features requires these characteristics to be held constant for there to be a connection. The magnitude of the feature penalization $W_f$ regulates the importance of this conservation. If $D_{kl}$ exceeds the double of the mean distance traveled in each frame, $C_{kl}$ is set to infinity
@@ -188,12 +191,12 @@ Nevertheless, we used a more specific version of the LAP tracker that considers 
 	\item Also, new particles could appear, so if a detection fails to find a track, the next frame, that detection will be considered in a separate LAP for tracking initiation. This LAP will be solved only with particles not in a track and after solving the LAP with predictions. This assigning order means that a track creation can not cause other tracks to end.
 \end{itemize}
 
-The algorithm has success in gap closing and frame to frame linking, bypassing problems caused by collisions. This affirmation only applies if particles have a roughly constant velocity and the search radius $r_s$ is more than the displacement between successive frames. The second point is important because when bacteria collide with a wall, they may completely stop, so a short $r_s$ may exclude these cases ending the track. All the results of tracking are left for chapter 4, meanwhile in figure \ref{tracking_examples} examples of trajectories are shown. In table \ref{table:image analysis parameters} all the relevant quantities for the methods described in this chapter are summarized.
+The algorithm is successful in gap closing and frame to frame linking, bypassing problems caused by collisions. This affirmation only applies if particles have a roughly constant velocity and the search radius $r_s$ is more than the displacement between successive frames. The second point is important because when bacteria collide with a wall, they may completely stop, so a short $r_s$ may exclude these cases ending the track. All the results of tracking are left for Chapter 4; meanwhile, figure \ref{tracking_examples} shows some trajectory examples. In table \ref{table:image analysis parameters} all the relevant quantities for the methods described in this chapter are summarized.
 
 \begin{figure}
 	\centering
 	\includesvg[scale=1]{imagenes/tracking_trajectories}
-	\caption[Example of trajectories]{Example of trajectories obtained with the tracking method. The star represents the start of a track and the triangles the end of them. The mask is used as background to show the walls. Dimensions of the curved wall are shown at the bottom.}
+	\caption[Example of trajectories]{Example of trajectories obtained with the tracking method. The star represents the start of each track and the triangles the end of them. The mask is used as background to show the walls. Dimensions of the curved wall are shown at the bottom.}
 	\label{tracking_examples}
 \end{figure}
 
@@ -201,7 +204,7 @@ The algorithm has success in gap closing and frame to frame linking, bypassing p
 \begin{table}[!h]
    \centering
     \small
-    \caption[Summary of all quantities used in the image analysis]{All of the quantities used for the image analysis, with their description and values. Parameters that are discussed but not include in the methods are not included in thise table. }
+    \caption[Summary of all quantities used in the image analysis]{All the quantities used for the image analysis, with their description and values. Parameters that are discussed but not include in the methods are not included in thise table. }
     \begin{tabularx}{\textwidth}{lXl}
     \hline\noalign{\smallskip}
          Quantity  & Description & Values   \\
