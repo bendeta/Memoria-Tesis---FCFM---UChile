@@ -14,7 +14,7 @@ We observe that cell adhesion to the frontal wall occurs when the surfaces are n
 
 \begin{figure}
 	\centering
-	\includesvg[width=\linewidth]{imagenes/adhesion}
+	\includegraphics[width=\linewidth]{imagenes/adhesion.PNG}
 	\caption[Frames of an experiment not used because the channel was not coated with BSA]{Four frames of an experiment where the channel was not coated with BSA. The four cells enclosed by red circles appear on all frames because they have adhered to the frontal surface. Adhered bacteria slightly move but never leave the focal plane. No measurements were made on these experiments. We only used them in this figure to show what happens when not using BSA. } 
 	\label{adhesion}
 \end{figure}
@@ -264,6 +264,7 @@ Following the methodology described in section 2.2.4, we track bacteria movement
 \begin{figure}[H]
 	\centering
 	\includesvg[width=\linewidth]{imagenes/speed_distribution}
+		\caption[Probability density functions for the normalized speed in contact with the curved wall.]{Probability density functions for the speed in two different experimental videos for $\lambda= $ \SI{30}{\micro\meter} and $A=$ \SI{5.6}{\micro\meter}. a) and b) distributions for the non-normalized speed $V$ in the bulk and the curved wall, respectively. c) and d) distributions for the normalized speed $v=V/V_{\text{bulk}}$ in the same experiments. a) shows distributions in bulk with different means, but in c) we can see how the distributions in bulk are comparable, thus justifying the usage of the normalized speed instead of $V$.	}
 	\label{speed distribution}
 \end{figure}
 }
@@ -301,9 +302,13 @@ Speed profiles are conceived similarly to intensity profiles. If a particle $i$ 
 
 In figure \ref{velocity profiles} we show a comparison between experiments and simulations with the optimal set of parameters $K^*=3.0$, $D_r^*=0.015$ for the speed profiles $v(x)$. Experiments indicate that in the cases with low amplitude, namely plots g), h) and i), $v(x)>1$ in the extremes of the profile. This is probably caused due to the flow induced by bacteria swimming. When bacteria reach a peak, typically, they swim away from the wall. Therefore the backflow produced by the no-slip boundary condition may push bacteria to swim faster. To confirm this hypothesis, a measurement of the flow field is needed. This near-field hydrodynamic effect is out of the scope of this thesis. Nevertheless, we have confirmed that the measurement of $v(x)$ is correct.
 
-In the same case of low amplitude, we also observe that bacteria slow down in the valley to even half of their bulk speed. Simulations predict that bacteria decrease their speed only $25\%$ in those cases. For simulations, bacteria slow down due to the collision force with the wall, but in reality, friction and the flagella's interruption also play a role in that regard. Nevertheless, this aspect only changes the residence time of bacteria in the wall. If we assume a bulk speed of \SI[per-mode = symbol]{20}{\micro\meter\per\second} the difference between the experimental measure and prediction of the speed is around \SI[per-mode = symbol]{5}{\micro\meter\per\second}. Considering a trajectory in the curved wall where the bacteria move along the entire period, the distance traveled in contact with the surface is up to \SI{30}{\micro\meter}. In this case, the residence time is at most \SI{1}{\second} longer for experiments than the simulation. This is the most extreme case, as bacteria may make contact with the curved wall near a peak and travel much less distance in the curved wall. Therefore, this difference is marginal, and it is barely observed in the profiles of figure \ref{candidates intensity profiles}.
+In the same case of low amplitude, we also observe that bacteria slow down in the valley to even half of their bulk speed. Simulations predict that bacteria decrease their speed only $25\%$ in those cases. For simulations, bacteria slow down due to the collision force with the wall, but in reality, friction and the flagella's interruption also play a role in that regard. Nevertheless, this aspect only changes the residence time of bacteria in the wall. If we assume a bulk speed of \SI[per-mode = symbol]{20}{\micro\meter\per\second} for a trajectory of \SI{30}{\micro\meter} in contact with the curved wall, the residence time in experiments is around \SI{1}{\second} longer than in the simulation. This is the most extreme case, as bacteria may make contact with the curved wall near a peak and travel much less distance in the curved wall. Therefore, this difference is marginal, and it is barely observed in the profiles of figure \ref{candidates intensity profiles}.
 
 Then, as the accumulation transition occurs, we can see how values of $v(x)$ decrease, reaching a minimum of $0.1$ for figure \ref{velocity profiles} a). This means that the measured mean speed of bacteria trapped in a valley is $\sim$ \SI[per-mode = symbol]{3}{\micro\meter\per\second}. The measurement of speed is sensitive to errors due to the noise in the position detection. When multiple bacteria collide, the shape of the detection changes continuously, so the center fluctuates, which is likely to happen when clustering on the valley occurs. Since we are measuring speed, this is a strictly positive effect and is not necessarily small. Therefore, measurements overestimate the real values of speed once bacteria start to stagnate in the valley.
+
+\newpage
+
+More importantly, as the accumulation transition takes place, the simulations appropriately predict the speed values. We determined the optimal values $K^*$ and $D_r^*$ using intensity profiles, but they still predict values of other quantities, such as the speed profile. These are related quantities from an experimental point of view, but it does not mean that any model can replicate them. These observations render the model's qualitative predictions as more than pure coincidence. Moreover, they imply that the dynamics on the valley are correctly modeled when the accumulation transition occurs.
 
 \begin{wrapfigure}{r}{0.5\linewidth}
 \vspace{-20pt}
@@ -314,18 +319,7 @@ Then, as the accumulation transition occurs, we can see how values of $v(x)$ dec
 \label{minv_curvature}
 \end{wrapfigure}
 
-More importantly, as the accumulation transition takes place, the simulations appropriately predict the speed values. We determined the optimal values $K^*$ and $D_r^*$ using intensity profiles, but they still predict values of other quantities, such as the speed profile. These are related quantities from an experimental point of view, but it does not mean that any model can replicate them. These observations render the model's qualitative predictions as more than pure coincidence. Moreover, they imply that the dynamics on the valley are correctly modeled when the accumulation transition occurs.
-
 To summarize the results of this section, in figure \ref{minv_curvature} we plot the minimum of the speed profile $\text{min}(v)$ as a function of curvature $\kappa$. In experiments, we obtain that $\text{min}(v)$ is equal to $0.4$ for low curvatures, while in simulations with the optimal set of parameters, it reaches values up to $0.8$. In the opposite case of higher curvatures, the experiments reach a value of $\text{min}(v)$ around $0.1$ caused by fluctuations in the detections of bacteria stagnate in the valley. In contrast, simulations predict values near $0$ for $\kappa=$ \SI{0.9}{\per\micro\meter}. Nevertheless, the accumulation transition is correctly represented by a rapid diminution of $\text{min}(v)$ 
-
-
-\afterpage{
-\begin{figure}[H]
-	\centering
-	\includesvg[width=\linewidth]{imagenes/time_curvature}
-	\caption[Mean and standard deviation of the characteristic times in experiments and simulations with the best pair of parameters]{Mean and standard deviation of the characteristic times in experiments and simulations with the best pair of parameters. a, b) Mean contact and escape times, respectively. The average is taken over the ensemble of cells that leave the wall. In b) a decrease in the escape time occurs for $\kappa =$ \SI{0.25}{\per\micro\meter}. c, d) standard deviations of the characteristic times. Instead of using error bars in a) and b), we decided to show the standard deviations separately because error bars would overlap. Its dependence on the curvature is caused by stagnation in the valley. }
-	\label{time curvature}
-\end{figure}}
 
 
 \label{section: times}
@@ -348,6 +342,14 @@ In figures \ref{time curvature} a), b) we show values of the mean characteristic
 We also note the two observed decrements share an essential property. They occur clearly for $\kappa=$ \SI{0.25}{\per\micro\meter}, but only one point shows the transition, the one slightly to the right. Here we are comparing the pairs $(\lambda, \ A)$ given by (21, 2.7) and (30, 5.6). In both cases, the point with a low value is  (30, 5.6). This is logical because a higher amplitude means that bacteria leave the sinusoidal wall with a higher inclination. We conclude that the curvature $\kappa$ does not reveal all the information of this system, but it is still helpful for the description.
 
 Finally, in figures \ref{time curvature} c), d) we plot the standard deviations of the characteristic times $\sigma_{\text{contact}}$ and $\sigma_{\text{escape}}$. Again the quantitative predictions are similar in the contact case but different for the escape times. We also observe that the standard deviation increases with the curvature. This happens because bacteria start to stagnate in the valley, but not all particles in contact with the wall will go through it. Therefore, there is a high variation in the characteristic times of each cell depending on the trajectory.
+
+\afterpage{
+\begin{figure}[H]
+	\centering
+	\includesvg[width=\linewidth]{imagenes/time_curvature}
+	\caption[Mean and standard deviation of the characteristic times in experiments and simulations with the best pair of parameters]{Mean and standard deviation of the characteristic times in experiments and simulations with the best pair of parameters. a, b) Mean contact and escape times, respectively. The average is taken over the ensemble of cells that leave the wall. In b) a decrease in the escape time occurs for $\kappa =$ \SI{0.25}{\per\micro\meter}. c, d) standard deviations of the characteristic times. Instead of using error bars in a) and b), we decided to show the standard deviations separately because error bars would overlap. Its dependence on the curvature is caused by stagnation in the valley. }
+	\label{time curvature}
+\end{figure}}
 
 These results are promising. In similar conditions, bacteria on flat walls were measured to have an average contact time of \SI{64}{\second} \cite{Drescher2011FluidScattering}. By considering a sinusoidal surface, we are reducing this contact time to less than \SI{5}{\second}. Even if bacteria do not escape the wall influence, this is important because bacteria will only adhere if in contact with the surface. Also, in the case of the escape times, considering only simulations, bacteria escape in around \SI{10}{\second}. Therefore a surface with the appropriate curvature will expel bacteria away from it. We conclude that a geometric control of the surface accumulation and so biofilm formation reduction is possible.
  

@@ -51,14 +51,14 @@ where $u=$ \SI[per-mode = symbol]{20}{\micro\meter \per \second} is the mean spe
 Taking the dot product of \eqref{eq:flagellar force} and \eqref{eq:positon} we obtain an equation for the time derivative of the square displacement.
 
 \begin{equation} \label{eq:derivative of msd}
-	\dot{\textbf{r}} \cdot \textbf{r} = \frac{1}{2}\frac{d}{dt} (r^2) = \int_0^t u^2 [ \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime)]dt^\prime + \text{irrelevant terms}.
+	\dot{\textbf{r}} \cdot \textbf{r} = \frac{1}{2}\frac{d}{dt} (r^2) = \int_0^t  [u^2 \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime)]dt^\prime + \text{irrelevant terms}.
 \end{equation}
 
 
 All the terms in the right side of equation \eqref{eq:derivative of msd} are stochastic and vary from cell to cell. Nevertheless, their average for all particles has properties that allow progress in the calculation. For example, the terms cataloged as irrelevant consider dot products of two quantities completely uncorrelated, the director vector $\textbf{p}$ and the force $\textbf{F}^*_{\text{brown}}$. Therefore after averaging on the ensemble of cells, the average dot product is zero, and we are left with: 
 
 \begin{equation} 
-	\frac{d}{dt} \langle r^2 \rangle &= 2 \int_0^t u^2 \langle \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime) \rangle dt^\prime.
+	\frac{d}{dt} \langle r^2 \rangle &= 2 \int_0^t  \langle u^2 \textbf{p}(t^\prime) \cdot \textbf{p}(t) + \textbf{F}^*_{\text{brown}}(t) \cdot \textbf{F}^*_{\text{brown}}(t^\prime) \rangle dt^\prime.
 \end{equation}
 
 
